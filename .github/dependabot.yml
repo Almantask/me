@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # One PR per ecosystem rather than a dozen: these move together anyway, and
+      # the full CI pipeline is what actually decides whether a bump is safe.
+      minor-and-patch:
+        update-types: [minor, patch]
+      animation:
+        patterns: ['gsap', '@gsap/*', 'motion', 'lenis']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

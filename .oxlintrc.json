@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "typescript",
+    "unicorn",
+    "oxc"
+  ],
+  "env": {
+    "browser": true,
+    "es2024": true
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "perf": "warn"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "import/no-unassigned-import": "off",
+    "jsx-a11y/anchor-is-valid": "error",
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/aria-props": "error",
+    "jsx-a11y/label-has-associated-control": "error",
+    "react/jsx-key": "error",
+    "react/no-danger": "error",
+    "typescript/no-explicit-any": "error",
+    "import/no-cycle": "error"
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "playwright-report"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "scripts/**",
+        "e2e/**"
+      ],
+      "rules": {
+        "no-await-in-loop": "off",
+        "no-console": "off",
+        "unicorn/consistent-function-scoping": "off"
+      }
+    }
+  ]
+}

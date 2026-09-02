@@ -1,0 +1,10 @@
+# CI runs on Linux; keep committed line endings LF regardless of the author's OS.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending normalised.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.avif binary
+*.webp binary
+*.woff2 binary

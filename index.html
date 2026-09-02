@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="canonical" href="https://almantask.github.io/me/" />
+
+    <title>Almantas Karpavičius — Engineering Manager, author, mentor</title>
+    <meta
+      name="description"
+      content="Engineering Manager at Nord Security. 3× Microsoft MVP, author of two books, conference speaker, and mentor at Idealogue, KTU and Nord Security."
+    />
+    <meta name="author" content="Almantas Karpavičius" />
+    <meta name="theme-color" content="#100E0D" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FAF8F5" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Almantas Karpavičius" />
+    <meta property="og:title" content="Almantas Karpavičius — Engineering Manager, author, mentor" />
+    <meta
+      property="og:description"
+      content="I like coding. I like growing people a lot more. Engineering Manager at Nord Security, 3× Microsoft MVP, author of two books."
+    />
+    <meta property="og:url" content="https://almantask.github.io/me/" />
+    <meta property="og:image" content="https://almantask.github.io/me/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Almantas Karpavičius speaking on stage" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Almantas Karpavičius",
+        "url": "https://almantask.github.io/me/",
+        "image": "https://almantask.github.io/me/og.jpg",
+        "jobTitle": "Engineering Manager",
+        "email": "mailto:almantusk@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Kaunas", "addressCountry": "LT" },
+        "worksFor": { "@type": "Organization", "name": "Nord Security" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Kaunas University of Technology" },
+        "knowsAbout": ["Engineering management", "Mentoring", "Behaviour-driven development", "C#", "AI-assisted software development"],
+        "sameAs": [
+          "https://www.linkedin.com/in/almantas-karpavicius",
+          "https://github.com/Almantask",
+          "https://www.youtube.com/c/AlmantasKarpavi%C4%8Dius",
+          "https://mvp.microsoft.com/en-us/PublicProfile/5004259",
+          "https://www.amazon.com/Software-Craftsmanship-Using-Practical-reviewing/dp/9365892422",
+          "https://www.amazon.com/Workshop-Kickstart-career-software-developer/dp/1800566492"
+        ]
+      }
+    </script>
+
+    <script>
+      // Applies the theme before first paint. Without this the page flashes the wrong
+      // background on every load. Mirrors resolveTheme() in src/hooks/useTheme.ts.
+      (function () {
+        try {
+          var stored = localStorage.getItem('akarpavicius-theme')
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        } catch (e) {
+          document.documentElement.classList.add('dark')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

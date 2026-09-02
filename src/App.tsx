@@ -1,0 +1,56 @@
+import { LazyMotion, MotionConfig } from 'motion/react'
+import { ScrollProvider } from './motion/ScrollProvider'
+import { InitialHash } from './motion/InitialHash'
+import { Nav } from './components/Nav'
+import { ScrollProgress } from './components/ScrollProgress'
+import { Hero } from './components/Hero'
+import { About } from './components/About'
+import { Experience } from './components/Experience'
+import { Projects } from './components/Projects'
+import { Speaking } from './components/Speaking'
+import { Community } from './components/Community'
+import { Writing } from './components/Writing'
+import { Beyond } from './components/Beyond'
+import { Contact } from './components/Contact'
+import { Footer } from './components/Footer'
+
+// Loaded after first paint: the feature bundle is ~25 kB gzip that nothing needs
+// until the reader interacts or scrolls.
+const loadMotionFeatures = () => import('./motion/features').then((module) => module.default)
+
+export function App() {
+  return (
+    // reducedMotion="user" makes Motion honour the OS preference too — GSAP and
+    // Lenis are gated separately, and all three have to agree.
+    <MotionConfig reducedMotion="user">
+      <LazyMotion strict features={loadMotionFeatures}>
+      <ScrollProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ember focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-bg"
+        >
+          Skip to content
+        </a>
+
+        <InitialHash />
+        <ScrollProgress />
+        <Nav />
+
+        <main id="main">
+          <Hero />
+          <About />
+          <Experience />
+          <Projects />
+          <Speaking />
+          <Community />
+          <Writing />
+          <Beyond />
+          <Contact />
+        </main>
+
+        <Footer />
+      </ScrollProvider>
+      </LazyMotion>
+    </MotionConfig>
+  )
+}
