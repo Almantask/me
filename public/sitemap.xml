@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://almantask.github.io/me/</loc>
+    <loc>https://almantask.github.io/me/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://almantask.github.io/me/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://almantask.github.io/me/?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://almantask.github.io/me/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://almantask.github.io/me/?lang=lt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://almantask.github.io/me/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://almantask.github.io/me/?lang=lt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://almantask.github.io/me/"/>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

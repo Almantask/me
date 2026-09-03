@@ -1,4 +1,5 @@
 import type { Project } from '../content/types'
+import { useUi } from '../i18n/useContent'
 import { useMagnetic } from '../motion/useMagnetic'
 import { TagList } from './Tag'
 
@@ -7,6 +8,7 @@ interface Props {
 }
 
 export function ProjectCard({ project }: Props) {
+  const ui = useUi()
   const ref = useMagnetic<HTMLLIElement>(0.08)
 
   return (
@@ -35,10 +37,10 @@ export function ProjectCard({ project }: Props) {
         <p className="mt-1 text-sm text-muted">{project.years}</p>
         <p className="mt-4 flex-1 text-muted">{project.blurb}</p>
 
-        <TagList items={project.tech} label={`${project.name} technologies`} />
+        <TagList items={project.tech} label={ui.techLabel(project.name)} />
 
         <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ember">
-          Open
+          {ui.openProject}
           <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">
             <path
               d="M4 12 12 4M6 4h6v6"

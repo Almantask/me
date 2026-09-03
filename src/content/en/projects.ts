@@ -1,4 +1,4 @@
-import type { Project } from './types'
+import type { Project } from '../types'
 
 /** Newest first — the 2026 AI/music work is where he is now. */
 export const projects: readonly Project[] = [

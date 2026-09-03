@@ -1,4 +1,4 @@
-import type { Award } from './types'
+import type { Award } from '../types'
 
 export const awards: readonly Award[] = [
   {

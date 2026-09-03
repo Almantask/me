@@ -4,7 +4,7 @@ The personal site of Almantas Karpavičius — Engineering Manager at Nord Secur
 
 **Live:** https://almantask.github.io/me/
 
-A single scrolling page: hero → about → experience → projects → speaking → community & mentorship → writing & awards → beyond work → contact. Dark by default, with a light theme, and a lot of deliberate motion.
+A single scrolling page: hero → about → experience → projects → speaking → community & mentorship → writing & awards → beyond work → contact. English and Lithuanian, dark and light themes, and a lot of deliberate motion.
 
 ## Running it
 
@@ -29,7 +29,15 @@ Note the `/me/` — the site is served from a repository subpath, and the dev se
 
 ## Updating the content
 
-**All copy lives in `src/content/`.** Components render it and never hold text of their own, so a CV update is a one-file diff:
+**All copy lives in `src/content/`**, split by language. Components render it and never hold text of their own, so a CV update is a one-file diff per language:
+
+```
+src/content/
+  types.ts        interfaces both languages must satisfy
+  index.ts        bundles = { en, lt }
+  site.ts         URL and contact-form endpoint (not language-specific)
+  en/  lt/        the same seven files, one set per language
+```
 
 | File | Holds |
 | --- | --- |
@@ -39,9 +47,24 @@ Note the `/me/` — the site is served from a repository subpath, and the dev se
 | `speaking.ts` | Talks, grouped by year |
 | `community.ts` | Mentorship beats, the counted stats, community activities |
 | `awards.ts`, `books.ts` | Recognition and writing |
-| `site.ts` | URL, meta description, contact-form endpoint |
+| `ui.ts` | Every string that is chrome rather than CV content — buttons, labels, form errors, page title |
 
-`src/content/types.ts` defines the shapes. `src/__tests__/content.test.ts` enforces unique ids, reverse-chronological roles, `https:` links — and that **no phone number or street address ever appears in the content bundle**, which is a deliberate privacy decision, not an oversight.
+**Edit both languages together.** `src/__tests__/content.test.ts` fails the build if the two drift: matching ids in every collection, the same roles featured, identical dates, links and stat values, the same set of UI string keys, and prose that is actually translated rather than copied. It also enforces unique ids, reverse-chronological roles, `https:` links, and that **no phone number or street address appears in either language** — a deliberate privacy decision, not an oversight.
+
+## Language
+
+Two languages, English and Lithuanian, chosen in this order:
+
+1. `?lang=en` / `?lang=lt` in the URL — so a shared link always opens in the language it was shared in
+2. the reader's previous choice, from `localStorage`
+3. the browser's own preference (`lt-LT` matches `lt`)
+4. English
+
+`src/i18n/language.ts` holds that rule as a pure function; `LanguageProvider` applies it and keeps `<html lang>`, the document title and the meta description in step. Switching rewrites the URL with `replaceState`, preserving whichever section anchor the reader is on.
+
+**Section ids are never translated** — they are URL anchors, and they are what the animation selectors key off. Only the labels change. Dates format per language too: `Jan 2026` in English, `01/2026` in Lithuanian, which is what the Lithuanian CV does and what `Intl` reports for the locale.
+
+Both language bundles ship eagerly. Lazy-loading the inactive one would save a few kB but hand a Lithuanian reader a flash of English on arrival — the wrong trade for the audience the feature exists for. A third language is the point to revisit that.
 
 ### The contact form
 
@@ -95,7 +118,8 @@ A single client-rendered React app rather than Astro or Next: the page ships GSA
 Two things that are easy to get wrong and are therefore checked mechanically:
 
 - **`e2e/smoke.spec.ts` asserts no request resolves outside `/me/`.** A root-absolute `/img/x.jpg` works perfectly in `npm run dev` and 404s in production. This is the guard.
-- **`npm run budget` fails the build if eager JS grows past 165 kB gzip.** Motion's DOM feature bundle is dynamically imported and counted separately.
+- **`npm run budget` fails the build if eager JS grows past 175 kB gzip.** Motion's DOM feature bundle is dynamically imported and counted separately.
+- **axe runs over both languages in both themes.** Lithuanian sets noticeably longer strings, so it can break a layout or a contrast ratio that English never does. The 320px overflow check runs in Lithuanian for the same reason.
 
 ### First-time setup
 

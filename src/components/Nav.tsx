@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 import { m } from 'motion/react'
 import { useLenis } from 'lenis/react'
-import { sections } from '../content/profile'
+import { useContent } from '../i18n/useContent'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { LanguageToggle } from './LanguageToggle'
 import { ThemeToggle } from './ThemeToggle'
 
-const IDS = sections.map((section) => section.id)
-
 export function Nav() {
-  const active = useActiveSection(IDS)
+  const { profile, sections, ui } = useContent()
+  // Section ids are identical across languages, so switching language never
+  // invalidates the active-section subscription or an anchor someone shared.
+  const active = useActiveSection(sections.map((section) => section.id))
   const lenis = useLenis()
   const [condensed, setCondensed] = useState(false)
 
@@ -31,13 +33,15 @@ export function Nav() {
     else target.scrollIntoView({ block: 'start' })
   }
 
+  const [firstName, ...restOfName] = profile.name.split(' ')
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         condensed ? 'border-b border-line bg-bg/85 backdrop-blur-md' : 'border-b border-transparent'
       }`}
     >
-      <nav aria-label="Sections" className="shell flex items-center justify-between gap-4 py-3">
+      <nav aria-label={ui.sectionsNavLabel} className="shell flex items-center justify-between gap-4 py-3">
         <a
           href="#top"
           onClick={(event) => {
@@ -47,7 +51,7 @@ export function Nav() {
           }}
           className="text-sm font-semibold tracking-tight"
         >
-          Almantas <span className="text-muted">Karpavičius</span>
+          {firstName} <span className="text-muted">{restOfName.join(' ')}</span>
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -77,7 +81,10 @@ export function Nav() {
           })}
         </ul>
 
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
   )

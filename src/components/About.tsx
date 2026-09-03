@@ -1,16 +1,13 @@
-import { about, education, languages } from '../content/profile'
+import { useContent } from '../i18n/useContent'
 import { useReveal } from '../motion/useReveal'
 import { Section } from './Section'
 
 export function About() {
+  const { about, education, spokenLanguages, ui } = useContent()
   const scope = useReveal<HTMLDivElement>({ stagger: 0.1 })
 
   return (
-    <Section
-      id="about"
-      eyebrow="About"
-      title="I chose growing people over growing codebases."
-    >
+    <Section id="about" eyebrow={ui.aboutEyebrow} title={ui.aboutTitle}>
       <div ref={scope} className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <div className="space-y-6 text-lg leading-relaxed">
           {about.map((paragraph) => (
@@ -22,7 +19,7 @@ export function About() {
 
         <aside className="space-y-8 text-sm">
           <div data-reveal>
-            <h3 className="eyebrow">Education</h3>
+            <h3 className="eyebrow">{ui.educationHeading}</h3>
             <ul className="mt-4 space-y-4">
               {education.map((entry) => (
                 <li key={entry.id}>
@@ -37,9 +34,9 @@ export function About() {
           </div>
 
           <div data-reveal>
-            <h3 className="eyebrow">Languages</h3>
+            <h3 className="eyebrow">{ui.languagesHeading}</h3>
             <ul className="mt-4 space-y-1 text-muted">
-              {languages.map((language) => (
+              {spokenLanguages.map((language) => (
                 <li key={language}>{language}</li>
               ))}
             </ul>

@@ -1,19 +1,20 @@
 import { useRef, useState } from 'react'
 import { AnimatePresence, m } from 'motion/react'
-import { experience } from '../content/experience'
+import { useContent } from '../i18n/useContent'
 import { DURATION, EASE, ScrollTrigger, gsap, useGSAP } from '../motion/gsap'
 import { useMotionEnvironment } from '../motion/useMotionEnvironment'
 import { RoleCard } from './RoleCard'
 import { Section } from './Section'
 
-const featured = experience.filter((role) => role.featured)
-const earlier = experience.filter((role) => !role.featured)
-
 export function Experience() {
+  const { experience, ui } = useContent()
   const scope = useRef<HTMLDivElement>(null)
   const spineRef = useRef<HTMLSpanElement>(null)
   const [expanded, setExpanded] = useState(false)
   const { reduced } = useMotionEnvironment()
+
+  const featured = experience.filter((role) => role.featured)
+  const earlier = experience.filter((role) => !role.featured)
 
   useGSAP(
     () => {
@@ -35,12 +36,7 @@ export function Experience() {
           scaleY: 1,
           ease: 'none',
           transformOrigin: 'top center',
-          scrollTrigger: {
-            trigger: scope.current,
-            start: 'top 70%',
-            end: 'bottom 75%',
-            scrub: 0.6,
-          },
+          scrollTrigger: { trigger: scope.current, start: 'top 70%', end: 'bottom 75%', scrub: 0.6 },
         },
       )
 
@@ -64,15 +60,17 @@ export function Experience() {
         }
       }
     },
+    // Language is deliberately not a dependency: switching it re-renders the same
+    // elements in the same structure, and re-running would replay every entrance.
     { scope, dependencies: [reduced, expanded] },
   )
 
   return (
     <Section
       id="experience"
-      eyebrow="Experience"
-      title="Ten years of building software, and of building the people who build it."
-      lede="Most recent roles first. The earlier ones are still here — they are just not what you came for."
+      eyebrow={ui.experienceEyebrow}
+      title={ui.experienceTitle}
+      lede={ui.experienceLede}
     >
       <div ref={scope} className="relative">
         {/* Unlit track first, then the ember spine that draws over it. */}
@@ -92,27 +90,27 @@ export function Experience() {
           ))}
 
           <div id="earlier-roles">
-          <AnimatePresence initial={false}>
-            {expanded ? (
-              <m.div
-                key="earlier"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                // Seven new roles shift every trigger below them; without this the
-                // rest of the page animates against stale positions.
-                onAnimationComplete={() => ScrollTrigger.refresh()}
-                className="overflow-hidden"
-              >
-                <div className="space-y-14 pt-14">
-                  {earlier.map((role) => (
-                    <RoleCard key={role.id} role={role} />
-                  ))}
-                </div>
-              </m.div>
-            ) : null}
-          </AnimatePresence>
+            <AnimatePresence initial={false}>
+              {expanded ? (
+                <m.div
+                  key="earlier"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  // Seven new roles shift every trigger below them; without this the
+                  // rest of the page animates against stale positions.
+                  onAnimationComplete={() => ScrollTrigger.refresh()}
+                  className="overflow-hidden"
+                >
+                  <div className="space-y-14 pt-14">
+                    {earlier.map((role) => (
+                      <RoleCard key={role.id} role={role} />
+                    ))}
+                  </div>
+                </m.div>
+              ) : null}
+            </AnimatePresence>
           </div>
         </div>
 
@@ -124,7 +122,7 @@ export function Experience() {
             aria-controls="earlier-roles"
             className="rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:border-ember hover:text-ember"
           >
-            {expanded ? 'Hide earlier roles' : `Show ${earlier.length} earlier roles`}
+            {expanded ? ui.hideEarlierRoles : ui.showEarlierRoles(earlier.length)}
           </button>
         </div>
       </div>

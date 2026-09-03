@@ -1,4 +1,4 @@
-import type { Role } from './types'
+import type { Role } from '../types'
 
 /** Reverse-chronological. `featured` roles render expanded; the rest sit behind the disclosure. */
 export const experience: readonly Role[] = [

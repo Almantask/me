@@ -1,18 +1,14 @@
-import { awards } from '../content/awards'
-import { books } from '../content/books'
+import { useContent } from '../i18n/useContent'
 import { useReveal } from '../motion/useReveal'
 import { ExternalLink } from './ExternalLink'
 import { Section } from './Section'
 
 export function Writing() {
+  const { awards, books, ui } = useContent()
   const scope = useReveal<HTMLDivElement>({ stagger: 0.1, y: 28 })
 
   return (
-    <Section
-      id="writing"
-      eyebrow="Writing &amp; recognition"
-      title="Two books, and the community that made them worth writing."
-    >
+    <Section id="writing" eyebrow={ui.writingEyebrow} title={ui.writingTitle}>
       <div ref={scope}>
         <ul className="grid gap-5 md:grid-cols-2">
           {books.map((book) => (
@@ -30,14 +26,14 @@ export function Writing() {
                 </p>
                 <p className="mt-5 flex-1 text-muted">{book.blurb}</p>
                 <span className="mt-6 text-sm font-medium text-ember group-hover:underline">
-                  Find it on Amazon
+                  {ui.findOnAmazon}
                 </span>
               </a>
             </li>
           ))}
         </ul>
 
-        <h3 className="eyebrow mt-16">Awards</h3>
+        <h3 className="eyebrow mt-16">{ui.awardsHeading}</h3>
         <ul className="mt-6 grid gap-5 md:grid-cols-2">
           {awards.map((award) => (
             <li key={award.id} data-reveal className="card flex gap-5 p-6">

@@ -1,3 +1,5 @@
+import { useUi } from '../i18n/useContent'
+
 const BASE = import.meta.env.BASE_URL
 const WIDTHS = [640, 960, 1440] as const
 
@@ -9,6 +11,8 @@ const srcSet = (extension: string) =>
  * perfectly in dev and 404s on Pages, where the site lives under /me/.
  */
 export function HeroPhoto() {
+  const ui = useUi()
+
   return (
     <picture>
       <source type="image/avif" srcSet={srcSet('avif')} sizes="(min-width: 1024px) 44vw, 92vw" />
@@ -21,7 +25,7 @@ export function HeroPhoto() {
         height={3333}
         fetchPriority="high"
         decoding="async"
-        alt="Almantas Karpavičius on stage mid-talk, one hand raised, smiling at the audience"
+        alt={ui.heroPhotoAlt}
         className="h-full w-full object-cover"
       />
     </picture>

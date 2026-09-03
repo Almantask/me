@@ -1,9 +1,11 @@
 import { type FormEvent, useId, useState } from 'react'
 import { contactFormEndpoint } from '../content/site'
-import { profile } from '../content/profile'
+import type { UiStrings } from '../content/types'
+import { useContent } from '../i18n/useContent'
 import {
   EMPTY_DRAFT,
   type ContactDraft,
+  type ContactErrorCode,
   type FieldErrors,
   buildMailto,
   isBot,
@@ -12,14 +14,28 @@ import {
 
 type Status = 'idle' | 'sending' | 'sent' | 'failed' | 'handed-off'
 
-const STATUS_MESSAGE: Record<Exclude<Status, 'idle'>, string> = {
-  sending: 'Sending…',
-  sent: 'Thank you — your message is on its way.',
-  failed: 'That did not go through. Email me directly and I will pick it up.',
-  'handed-off': 'Your mail app should be opening with the message ready to send.',
+function errorMessage(code: ContactErrorCode, ui: UiStrings): string {
+  const messages: Record<ContactErrorCode, string> = {
+    'name-required': ui.errorName,
+    'email-required': ui.errorEmailMissing,
+    'email-invalid': ui.errorEmailInvalid,
+    'message-short': ui.errorMessage,
+  }
+  return messages[code]
+}
+
+function statusMessage(status: Exclude<Status, 'idle'>, ui: UiStrings): string {
+  const messages: Record<Exclude<Status, 'idle'>, string> = {
+    sending: ui.statusSending,
+    sent: ui.statusSent,
+    failed: ui.statusFailed,
+    'handed-off': ui.statusHandedOff,
+  }
+  return messages[status]
 }
 
 export function ContactForm() {
+  const { profile, ui } = useContent()
   const id = useId()
   const [draft, setDraft] = useState<ContactDraft>(EMPTY_DRAFT)
   const [errors, setErrors] = useState<FieldErrors>({})
@@ -42,7 +58,7 @@ export function ContactForm() {
     if (Object.keys(found).length > 0) return
 
     if (!contactFormEndpoint) {
-      window.location.href = buildMailto(profile.email, draft)
+      window.location.href = buildMailto(profile.email, draft, ui.mailSubject(draft.name.trim()))
       setStatus('handed-off')
       return
     }
@@ -73,11 +89,21 @@ export function ContactForm() {
     }`,
   })
 
+  const fieldError = (name: 'name' | 'email' | 'message') => {
+    const code = errors[name]
+    if (!code) return null
+    return (
+      <p id={`${id}-${name}-error`} className="mt-2 text-sm text-red-500">
+        {errorMessage(code, ui)}
+      </p>
+    )
+  }
+
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
       <div>
         <label htmlFor={`${id}-name`} className="mb-2 block text-sm font-medium">
-          Your name
+          {ui.formName}
         </label>
         <input
           {...field('name')}
@@ -85,16 +111,12 @@ export function ContactForm() {
           autoComplete="name"
           onChange={(event) => set('name')(event.target.value)}
         />
-        {errors.name ? (
-          <p id={`${id}-name-error`} className="mt-2 text-sm text-red-500">
-            {errors.name}
-          </p>
-        ) : null}
+        {fieldError('name')}
       </div>
 
       <div>
         <label htmlFor={`${id}-email`} className="mb-2 block text-sm font-medium">
-          Your email
+          {ui.formEmail}
         </label>
         <input
           {...field('email')}
@@ -102,32 +124,24 @@ export function ContactForm() {
           autoComplete="email"
           onChange={(event) => set('email')(event.target.value)}
         />
-        {errors.email ? (
-          <p id={`${id}-email-error`} className="mt-2 text-sm text-red-500">
-            {errors.email}
-          </p>
-        ) : null}
+        {fieldError('email')}
       </div>
 
       <div>
         <label htmlFor={`${id}-message`} className="mb-2 block text-sm font-medium">
-          What is on your mind?
+          {ui.formMessage}
         </label>
         <textarea
           {...field('message')}
           rows={5}
           onChange={(event) => set('message')(event.target.value)}
         />
-        {errors.message ? (
-          <p id={`${id}-message-error`} className="mt-2 text-sm text-red-500">
-            {errors.message}
-          </p>
-        ) : null}
+        {fieldError('message')}
       </div>
 
       {/* Honeypot: off-screen rather than display:none, which some bots detect. */}
       <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor={`${id}-company`}>Company</label>
+        <label htmlFor={`${id}-company`}>{ui.formCompany}</label>
         <input
           id={`${id}-company`}
           name="company"
@@ -145,12 +159,12 @@ export function ContactForm() {
           disabled={status === 'sending'}
           className="rounded-full bg-ember px-6 py-3 text-sm font-semibold text-bg transition-transform hover:scale-[1.03] disabled:opacity-60"
         >
-          Send message
+          {ui.formSubmit}
         </button>
 
         {/* <output> carries an implicit role="status", so results are announced. */}
         <output aria-live="polite" className="text-sm text-muted">
-          {status === 'idle' ? '' : STATUS_MESSAGE[status]}
+          {status === 'idle' ? '' : statusMessage(status, ui)}
         </output>
       </div>
     </form>

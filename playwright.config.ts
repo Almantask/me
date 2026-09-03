@@ -12,6 +12,9 @@ export default defineConfig({
   reporter: process.env.CI ? [['html'], ['github']] : [['list']],
   use: {
     baseURL: BASE_URL,
+    // Pinned so language resolution is deterministic: without it the suite would
+    // inherit whatever locale the CI runner happens to have.
+    locale: 'en-GB',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },

@@ -1,4 +1,4 @@
-import type { CommunityItem, Stat } from './types'
+import type { CommunityItem, Stat } from '../types'
 
 /** The three beats the pinned set-piece scrubs through. Order is the argument. */
 export const mentorshipBeats: readonly string[] = [

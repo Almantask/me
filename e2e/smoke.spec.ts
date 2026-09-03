@@ -56,7 +56,7 @@ test.describe('the page', () => {
     // 320 CSS px is the narrowest viewport worth supporting. A single element that
     // overflows here makes the whole page feel broken on a small phone.
     await page.setViewportSize({ width: 320, height: 720 })
-    await page.goto('./')
+    await page.goto('./?lang=lt')
     await settle(page)
     await scrollToSection(page, 'contact')
 

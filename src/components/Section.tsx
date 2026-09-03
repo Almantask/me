@@ -15,11 +15,7 @@ interface Props {
  */
 export function Section({ id, eyebrow, title, lede, children, className = '' }: Props) {
   return (
-    <section
-      id={id}
-      aria-labelledby={`${id}-heading`}
-      className={`scroll-mt-24 py-20 md:py-28 ${className}`}
-    >
+    <section id={id} aria-labelledby={`${id}-heading`} className={`scroll-mt-24 py-20 md:py-28 ${className}`}>
       <div className="shell">
         <p className="eyebrow">{eyebrow}</p>
         <h2

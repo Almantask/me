@@ -2,10 +2,11 @@ import { useRef } from 'react'
 import { DURATION, EASE, SplitText, gsap, useGSAP } from '../motion/gsap'
 import { useMotionEnvironment } from '../motion/useMotionEnvironment'
 import { EmberField } from '../motion/EmberField'
-import { heroFacts, profile } from '../content/profile'
+import { useContent } from '../i18n/useContent'
 import { HeroPhoto } from './HeroPhoto'
 
 export function Hero() {
+  const { heroFacts, profile, ui } = useContent()
   const scope = useRef<HTMLElement>(null)
   const nameRef = useRef<HTMLHeadingElement>(null)
   const photoRef = useRef<HTMLDivElement>(null)
@@ -120,19 +121,19 @@ export function Hero() {
               href="#contact"
               className="rounded-full bg-ember px-6 py-3 text-sm font-semibold text-bg transition-transform hover:scale-[1.03]"
             >
-              Get in touch
+              {ui.heroCtaContact}
             </a>
             <a
               href="#experience"
               className="rounded-full border border-line px-6 py-3 text-sm font-semibold transition-colors hover:border-ember hover:text-ember"
             >
-              See my work
+              {ui.heroCtaWork}
             </a>
           </div>
 
           <ul
             data-hero-stage
-            aria-label="At a glance"
+            aria-label={ui.heroFactsLabel}
             className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted"
           >
             {heroFacts.map((fact) => (

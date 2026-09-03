@@ -1,16 +1,17 @@
-import { talks } from '../content/speaking'
+import { useContent } from '../i18n/useContent'
 import { useReveal } from '../motion/useReveal'
 import { Section } from './Section'
 
 export function Speaking() {
+  const { talks, ui } = useContent()
   const scope = useReveal<HTMLUListElement>({ stagger: 0.06, y: 20 })
 
   return (
     <Section
       id="speaking"
-      eyebrow="Speaking"
-      title="Five years of conference stages."
-      lede="BDD, testing, and lately what all of it means once AI is writing half the code."
+      eyebrow={ui.speakingEyebrow}
+      title={ui.speakingTitle}
+      lede={ui.speakingLede}
     >
       <ul ref={scope} className="divide-y divide-line border-y border-line">
         {talks.map((talk) => {
@@ -28,7 +29,7 @@ export function Speaking() {
                   <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true">
                     <path d="M5 3.5v9l7.5-4.5z" fill="currentColor" />
                   </svg>
-                  Watch
+                  {ui.watchTalk}
                 </span>
               ) : null}
             </>
@@ -50,7 +51,7 @@ export function Speaking() {
                   className="flex items-center gap-5 py-6 transition-colors hover:text-ember"
                 >
                   {row}
-                  <span className="sr-only">— watch the recording on YouTube</span>
+                  <span className="sr-only">— {ui.watchTalkContext}</span>
                 </a>
               ) : (
                 <div className="flex items-center gap-5 py-6">{row}</div>

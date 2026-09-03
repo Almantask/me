@@ -15,15 +15,19 @@ async function scan(page: Page, exclude?: string) {
 }
 
 test.describe('accessibility', () => {
-  for (const theme of ['light', 'dark'] as const) {
-    test(`has no axe violations in the ${theme} theme`, async ({ page }) => {
-      await page.emulateMedia({ colorScheme: theme })
-      await page.goto('./')
-      await settle(page)
+  // Both languages, both themes. Lithuanian sets noticeably longer strings, so it
+  // can break a layout or a contrast ratio that English never does.
+  for (const language of ['en', 'lt'] as const) {
+    for (const theme of ['light', 'dark'] as const) {
+      test(`has no axe violations in ${language}, ${theme} theme`, async ({ page }) => {
+        await page.emulateMedia({ colorScheme: theme })
+        await page.goto(`./?lang=${language}`)
+        await settle(page)
 
-      const results = await scan(page)
-      expect(results.violations.map((violation) => violation.id)).toEqual([])
-    })
+        const results = await scan(page)
+        expect(results.violations.map((violation) => violation.id)).toEqual([])
+      })
+    }
   }
 
   test('has no violations further down the page', async ({ page }) => {

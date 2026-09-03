@@ -17,6 +17,9 @@ describe('validation', () => {
   it('rejects an empty form field by field', () => {
     const errors = validate(EMPTY_DRAFT)
     expect(Object.keys(errors).toSorted()).toEqual(['email', 'message', 'name'])
+    expect(errors.name).toBe('name-required')
+    expect(errors.email).toBe('email-required')
+    expect(errors.message).toBe('message-short')
   })
 
   it('rejects whitespace-only input', () => {
@@ -25,7 +28,7 @@ describe('validation', () => {
 
   it('rejects a malformed address', () => {
     for (const email of ['jane', 'jane@', 'jane@example', '@example.com', 'a b@c.com']) {
-      expect(validate(draft({ email })).email).toBeDefined()
+      expect(validate(draft({ email })).email).toBe('email-invalid')
     }
   })
 
@@ -45,7 +48,8 @@ describe('honeypot', () => {
 })
 
 describe('mailto fallback', () => {
-  const url = new URL(buildMailto('almantusk@gmail.com', draft()))
+  // The subject comes from the active language's copy, so it is passed in.
+  const url = new URL(buildMailto('almantusk@gmail.com', draft(), 'Hello from Jane Doe'))
   const params = new URLSearchParams(url.search)
 
   it('addresses the mail correctly', () => {
@@ -64,7 +68,7 @@ describe('mailto fallback', () => {
   })
 
   it('encodes characters that would otherwise break the URL', () => {
-    const raw = buildMailto('a@b.com', draft({ message: 'Testing & "quotes" + #hashes, please.' }))
+    const raw = buildMailto('a@b.com', draft({ message: 'Testing & "quotes" + #hashes, please.' }), 'Subject & more')
     expect(raw).not.toContain('"')
     expect(raw).toContain('%26')
     expect(new URLSearchParams(new URL(raw).search).get('body')).toContain('& "quotes" + #hashes')

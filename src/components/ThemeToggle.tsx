@@ -1,9 +1,10 @@
 import type { MouseEvent } from 'react'
 import { useTheme } from '../hooks/useTheme'
+import { useUi } from '../i18n/useContent'
 
 export function ThemeToggle() {
   const { theme, toggle } = useTheme()
-  const next = theme === 'dark' ? 'light' : 'dark'
+  const ui = useUi()
 
   const onClick = (event: MouseEvent<HTMLButtonElement>) => {
     // The wipe expands from the button itself, so the swap has an origin the eye
@@ -16,7 +17,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={onClick}
-      aria-label={`Switch to ${next} theme`}
+      aria-label={theme === 'dark' ? ui.switchToLight : ui.switchToDark}
       className="grid size-10 place-items-center rounded-full border border-line bg-surface text-muted transition-colors hover:border-ember hover:text-ember"
     >
       <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true" fill="none" strokeWidth="1.7">

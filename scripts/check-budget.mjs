@@ -10,8 +10,16 @@ const dist = resolve(dirname(fileURLToPath(import.meta.url)), '../dist')
 /**
  * Eager JS only. `features-*` is Motion's DOM feature bundle, dynamically imported
  * after first paint, so it does not block anything and is reported separately.
+ *
+ * Raised from 165 when Lithuanian was added: a second full content bundle costs
+ * about 9 kB gzip. Both languages ship eagerly on purpose — lazy-loading the
+ * inactive one would save a few kB but hand a Lithuanian reader a flash of English
+ * on arrival, which is the wrong trade for the audience the feature exists for.
+ *
+ * A THIRD language is the point at which to code-split by language instead of
+ * raising this again.
  */
-const BUDGET_KB = 165
+const BUDGET_KB = 175
 const DEFERRED = /^features-/
 
 async function main() {

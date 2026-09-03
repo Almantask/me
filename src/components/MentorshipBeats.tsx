@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { mentorshipBeats } from '../content/community'
+import { useContent } from '../i18n/useContent'
 import { gsap, useGSAP } from '../motion/gsap'
 import { useMotionEnvironment } from '../motion/useMotionEnvironment'
 
@@ -11,6 +11,7 @@ import { useMotionEnvironment } from '../motion/useMotionEnvironment'
  * browser's own scroll gestures — and the beats simply stack.
  */
 export function MentorshipBeats() {
+  const { mentorshipBeats } = useContent()
   const scope = useRef<HTMLDivElement>(null)
 
   const { reduced, canPin } = useMotionEnvironment()
@@ -55,10 +56,7 @@ export function MentorshipBeats() {
   )
 
   return (
-    <div
-      ref={scope}
-      className={pinned ? 'grid min-h-[42vh] place-items-center' : 'space-y-6'}
-    >
+    <div ref={scope} className={pinned ? 'grid min-h-[42vh] place-items-center' : 'space-y-6'}>
       {mentorshipBeats.map((beat) => (
         <p
           key={beat.slice(0, 24)}

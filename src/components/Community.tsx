@@ -1,10 +1,11 @@
-import { community, mentorshipLede, stats } from '../content/community'
+import { useContent } from '../i18n/useContent'
 import { useReveal } from '../motion/useReveal'
 import { ExternalLink } from './ExternalLink'
 import { MentorshipBeats } from './MentorshipBeats'
 import { StatTile } from './StatTile'
 
 export function Community() {
+  const { community, mentorshipLede, stats, ui } = useContent()
   const scope = useReveal<HTMLDivElement>({ stagger: 0.07, y: 26 })
 
   return (
@@ -14,9 +15,12 @@ export function Community() {
       className="scroll-mt-24 border-y border-line bg-surface-2 py-20 md:py-28"
     >
       <div className="shell">
-        <p className="eyebrow">Community &amp; mentorship</p>
-        <h2 id="community-heading" className="mt-3 max-w-3xl text-3xl font-semibold md:text-4xl lg:text-5xl">
-          I will be the person that I needed so much in my career.
+        <p className="eyebrow">{ui.communityEyebrow}</p>
+        <h2
+          id="community-heading"
+          className="mt-3 max-w-3xl text-3xl font-semibold md:text-4xl lg:text-5xl"
+        >
+          {ui.communityTitle}
         </h2>
         <p className="mt-5 max-w-2xl text-lg text-muted md:text-xl">{mentorshipLede}</p>
       </div>

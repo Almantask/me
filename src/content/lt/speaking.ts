@@ -1,8 +1,8 @@
-import type { Talk } from './types'
+import type { Talk } from '../types'
 
 /**
- * CV titles are canonical. Where the same talk toured several conferences it is one
- * entry with several events, rather than a repeated row.
+ * Pranešimų pavadinimai palikti originalo kalba — taip jie skelbti konferencijose
+ * ir taip jie surašyti lietuviškame CV.
  */
 export const talks: readonly Talk[] = [
   {
@@ -40,7 +40,7 @@ export const talks: readonly Talk[] = [
     id: 'ktu-lectures',
     year: 2021,
     events: ['KTU'],
-    title: 'Guest lectures on career and software architecture (2021 — 2024)',
+    title: 'Kviestinės paskaitos apie karjerą ir programinės įrangos architektūrą (2021 — 2024)',
   },
   {
     id: 'build-stuff-2021',

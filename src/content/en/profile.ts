@@ -1,4 +1,4 @@
-import type { Link, Section } from './types'
+import type { Link, Section } from '../types'
 
 export const profile = {
   name: 'Almantas Karpavičius',
