@@ -81,6 +81,18 @@ test.describe('language', () => {
     await expect(page.locator('#projects')).toBeAttached()
   })
 
+  test('translates the values band', async ({ page }) => {
+    await page.goto('./')
+    await settle(page)
+    await expect(page.locator('#values')).toContainText('Continuous growth')
+    await expect(page.locator('#values')).toContainText('Directness')
+
+    await page.goto('./?lang=lt')
+    await settle(page)
+    await expect(page.locator('#values')).toContainText('Nuolatinis augimas')
+    await expect(page.locator('#values')).toContainText('Tiesumas')
+  })
+
   test('translates the contact form, errors included', async ({ page }) => {
     await page.goto('./?lang=lt')
     await settle(page)

@@ -17,6 +17,9 @@ export const ui: UiStrings = {
   educationHeading: 'Education',
   languagesHeading: 'Languages',
 
+  valuesEyebrow: 'What I hold to',
+  valuesTitle: 'Three things I will not trade away.',
+
   experienceEyebrow: 'Experience',
   experienceTitle: 'Ten years of building software, and of building the people who build it.',
   experienceLede:

@@ -3,6 +3,7 @@ import type { Page } from '@playwright/test'
 export const SECTION_IDS = [
   'top',
   'about',
+  'values',
   'experience',
   'projects',
   'speaking',

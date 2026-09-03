@@ -104,6 +104,12 @@ export interface Education {
   readonly note: string
 }
 
+export interface Value {
+  readonly id: string
+  readonly name: string
+  readonly blurb: string
+}
+
 export interface Quote {
   readonly text: string
   readonly source: string
@@ -126,6 +132,9 @@ export interface UiStrings {
   readonly aboutTitle: string
   readonly educationHeading: string
   readonly languagesHeading: string
+
+  readonly valuesEyebrow: string
+  readonly valuesTitle: string
 
   readonly experienceEyebrow: string
   readonly experienceTitle: string
@@ -189,6 +198,7 @@ export interface ContentBundle {
   readonly heroFacts: readonly string[]
   readonly about: readonly string[]
   readonly quote: Quote
+  readonly values: readonly Value[]
   readonly hobbies: readonly string[]
   readonly beyond: string
   readonly spokenLanguages: readonly string[]

@@ -15,6 +15,7 @@ const collectionsOf = (bundle: ContentBundle) => ({
   stats: bundle.stats,
   sections: bundle.sections,
   education: bundle.education,
+  values: bundle.values,
 })
 
 describe.each(entries)('%s content', (_language, bundle) => {
@@ -121,10 +122,18 @@ describe('language parity', () => {
   })
 
   it('actually translates the prose rather than copying English', () => {
+    expect(lt.values.map((value) => value.name)).not.toEqual(
+      en.values.map((value) => value.name),
+    )
     expect(lt.ui.aboutTitle).not.toBe(en.ui.aboutTitle)
     expect(lt.profile.tagline).not.toBe(en.profile.tagline)
     expect(lt.about).not.toEqual(en.about)
     expect(lt.mentorshipBeats).not.toEqual(en.mentorshipBeats)
+  })
+
+  it('states the same three values in both languages', () => {
+    expect(lt.values.map((value) => value.id)).toEqual(['growth', 'vulnerability', 'directness'])
+    expect(en.values.map((value) => value.id)).toEqual(lt.values.map((value) => value.id))
   })
 
   it('counts the same number of about paragraphs and mentorship beats', () => {

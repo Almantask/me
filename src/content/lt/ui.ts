@@ -17,6 +17,9 @@ export const ui: UiStrings = {
   educationHeading: 'Išsilavinimas',
   languagesHeading: 'Kalbos',
 
+  valuesEyebrow: 'Kuo vadovaujuosi',
+  valuesTitle: 'Trys dalykai, kurių neiškeisiu.',
+
   experienceEyebrow: 'Patirtis',
   experienceTitle: 'Dešimt metų kuriant programinę įrangą — ir žmones, kurie ją kuria.',
   experienceLede:

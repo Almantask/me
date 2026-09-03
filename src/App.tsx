@@ -7,6 +7,7 @@ import { Nav } from './components/Nav'
 import { ScrollProgress } from './components/ScrollProgress'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
+import { Values } from './components/Values'
 import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
 import { Speaking } from './components/Speaking'
@@ -39,6 +40,7 @@ function Page() {
       <main id="main">
         <Hero />
         <About />
+        <Values />
         <Experience />
         <Projects />
         <Speaking />
