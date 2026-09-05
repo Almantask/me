@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { DURATION, EASE, SplitText, gsap, useGSAP } from '../motion/gsap'
-import { useMotionEnvironment } from '../motion/useMotionEnvironment'
+import { useInitialLowPower, useMotionEnvironment } from '../motion/useMotionEnvironment'
 import { EmberField } from '../motion/EmberField'
 import { useContent } from '../i18n/useContent'
 import { HeroPhoto } from './HeroPhoto'
@@ -12,7 +12,10 @@ export function Hero() {
   const photoRef = useRef<HTMLDivElement>(null)
   const glowRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLDivElement>(null)
-  const { reduced, finePointer } = useMotionEnvironment()
+  const { reduced, finePointer, lowPower } = useMotionEnvironment()
+  // The intro is choreographed once and must not re-run if the verdict changes
+  // later; the glow below is a class and a listener, so it takes the live value.
+  const introLowPower = useInitialLowPower()
 
   useGSAP(
     () => {
@@ -34,59 +37,92 @@ export function Hero() {
       // so this does not shred the heading for screen readers.
       const split = new SplitText(name, { type: 'words,chars', aria: 'auto' })
 
+      // Per character is twenty-odd elements animating at the one moment the device
+      // is also decoding the hero image and swapping fonts. Where frames are scarce
+      // the same gesture runs per word instead — two elements, not twenty. The split
+      // itself still happens either way, so the heading's aria handling is identical.
+      const [letters, cadence] = introLowPower
+        ? ([split.words, { duration: 0.6, stagger: 0.08 }] as const)
+        : ([split.chars, { duration: 0.9, stagger: 0.022 }] as const)
+
       const intro = gsap.timeline({ defaults: { ease: EASE.enter } })
 
       intro
-        .from(split.chars, {
-          yPercent: 120,
-          opacity: 0,
-          duration: 0.9,
-          stagger: 0.022,
-        })
+        .from(letters, { yPercent: 120, opacity: 0, ...cadence })
         .from(
           photo,
-          { clipPath: 'inset(0% 0% 100% 0%)', scale: 1.12, duration: 1.1 },
+          // clip-path is repainted per frame rather than composited, and the photo is
+          // the largest thing on the page. The reveal is worth it on a machine that
+          // can absorb it and is the first thing to go on one that cannot.
+          introLowPower
+            ? { opacity: 0, scale: 1.04, duration: 0.8 }
+            : { clipPath: 'inset(0% 0% 100% 0%)', scale: 1.12, duration: 1.1 },
           '<0.15',
         )
         .from(staged, { y: 22, opacity: 0, duration: DURATION.enter, stagger: 0.09 }, '<0.35')
 
       // The handoff into About: copy drifts up and dims while the photo eases back.
-      gsap.to(copyRef.current, {
-        yPercent: -18,
-        opacity: 0.15,
-        ease: 'none',
-        scrollTrigger: { trigger: scope.current, start: 'top top', end: 'bottom top', scrub: true },
-      })
-      gsap.to(photo, {
-        scale: 0.94,
-        ease: 'none',
-        scrollTrigger: { trigger: scope.current, start: 'top top', end: 'bottom top', scrub: true },
-      })
+      // One timeline on one ScrollTrigger rather than two triggers over an identical
+      // range — every extra scrub trigger is another thing to evaluate per frame.
+      gsap
+        .timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: scope.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+        .to(copyRef.current, { yPercent: -18, opacity: 0.15 }, 0)
+        .to(photo, { scale: 0.94 }, 0)
 
       return () => split.revert()
     },
-    { scope, dependencies: [reduced] },
+    { scope, dependencies: [reduced, introLowPower] },
   )
 
   useGSAP(
     () => {
       const glow = glowRef.current
       const host = photoRef.current
-      if (!glow || !host || !finePointer) return
+      if (!glow || !host || !finePointer || lowPower) return
 
       const moveX = gsap.quickTo(glow, 'xPercent', { duration: 0.9, ease: 'power3' })
       const moveY = gsap.quickTo(glow, 'yPercent', { duration: 0.9, ease: 'power3' })
 
+      // The listener was on `window`, so every pointer move anywhere on the page
+      // paid for a getBoundingClientRect on the hero — including deep in the footer,
+      // where the glow is not on screen. It is now bound to the hero, measured on
+      // entry, and re-measured only after something could have moved it.
+      let box = host.getBoundingClientRect()
+      let stale = false
+
       const onMove = (event: PointerEvent) => {
-        const box = host.getBoundingClientRect()
+        if (stale) {
+          box = host.getBoundingClientRect()
+          stale = false
+        }
         moveX(((event.clientX - box.left) / box.width - 0.5) * 30)
         moveY(((event.clientY - box.top) / box.height - 0.5) * 30)
       }
 
-      window.addEventListener('pointermove', onMove)
-      return () => window.removeEventListener('pointermove', onMove)
+      const invalidate = () => {
+        stale = true
+      }
+
+      const section = scope.current
+      section?.addEventListener('pointermove', onMove)
+      window.addEventListener('scroll', invalidate, { passive: true })
+      window.addEventListener('resize', invalidate)
+
+      return () => {
+        section?.removeEventListener('pointermove', onMove)
+        window.removeEventListener('scroll', invalidate)
+        window.removeEventListener('resize', invalidate)
+      }
     },
-    { dependencies: [finePointer] },
+    { dependencies: [finePointer, lowPower] },
   )
 
   return (
@@ -150,10 +186,17 @@ export function Hero() {
           <div
             ref={glowRef}
             aria-hidden="true"
-            className="pointer-events-none absolute inset-[-18%] rounded-full opacity-70 blur-3xl"
+            className={`pointer-events-none absolute inset-[-18%] rounded-full opacity-70 ${
+              lowPower ? '' : 'blur-3xl'
+            }`}
             style={{
-              background:
-                'radial-gradient(closest-side, rgb(var(--ember-rgb) / 0.32), transparent 72%)',
+              // A 64px blur over a box this size is one of the more expensive things
+              // on the page to rasterise. The gradient's own falloff already does most
+              // of the softening, so where the blur is dropped it is stretched to
+              // compensate rather than left with a visible edge.
+              background: lowPower
+                ? 'radial-gradient(closest-side, rgb(var(--ember-rgb) / 0.26), transparent 88%)'
+                : 'radial-gradient(closest-side, rgb(var(--ember-rgb) / 0.32), transparent 72%)',
             }}
           />
           <div

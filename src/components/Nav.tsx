@@ -35,11 +35,21 @@ export function Nav() {
 
   const [firstName, ...restOfName] = profile.name.split(' ')
 
+  // The condensed bar transitions colours only. `transition-all` also interpolates
+  // backdrop-filter, so crossing the threshold spent 300ms re-blurring the whole
+  // page behind the header.
+  //
+  // The blur is desktop-only for the same reason: a live backdrop-filter on a fixed
+  // full-width bar is re-composited for the entire duration of every scroll, and on
+  // a phone that is the first effect to start costing frames. Below `lg` a more
+  // opaque background carries the same separation for free.
+  const surface = condensed
+    ? 'border-b border-line bg-bg/95 lg:bg-bg/85 lg:backdrop-blur-md'
+    : 'border-b border-transparent'
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
-        condensed ? 'border-b border-line bg-bg/85 backdrop-blur-md' : 'border-b border-transparent'
-      }`}
+      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${surface}`}
     >
       <nav aria-label={ui.sectionsNavLabel} className="shell flex items-center justify-between gap-4 py-3">
         <a

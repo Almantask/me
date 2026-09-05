@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useContent } from '../i18n/useContent'
 import { SplitText, gsap, useGSAP } from '../motion/gsap'
-import { useMotionEnvironment } from '../motion/useMotionEnvironment'
+import { useInitialLowPower, useMotionEnvironment } from '../motion/useMotionEnvironment'
 import { useReveal } from '../motion/useReveal'
 import { Section } from './Section'
 
@@ -10,6 +10,9 @@ export function Beyond() {
   const scope = useReveal<HTMLDivElement>({ stagger: 0.08 })
   const quoteRef = useRef<HTMLParagraphElement>(null)
   const { reduced } = useMotionEnvironment()
+  // Frozen at first render: re-splitting the quote mid-visit would rebuild the
+  // scrub and jump the line the reader is in the middle of.
+  const lowPower = useInitialLowPower()
 
   useGSAP(
     () => {
@@ -18,6 +21,22 @@ export function Beyond() {
 
       if (reduced) {
         gsap.set(node, { opacity: 1 })
+        return
+      }
+
+      // Word by word, this scrub writes an opacity to every word in the quote on
+      // every frame of a scroll. Where frames are scarce the whole line brightens as
+      // one instead: the same idea, one property on one element.
+      if (lowPower) {
+        gsap.fromTo(
+          node,
+          { opacity: 0.12 },
+          {
+            opacity: 1,
+            ease: 'none',
+            scrollTrigger: { trigger: node, start: 'top 78%', end: 'bottom 55%', scrub: 0.4 },
+          },
+        )
         return
       }
 
@@ -38,7 +57,7 @@ export function Beyond() {
       return () => split.revert()
     },
     // The quote text itself changes with the language, so this one does re-split.
-    { dependencies: [reduced, quote.text] },
+    { dependencies: [reduced, lowPower, quote.text] },
   )
 
   return (

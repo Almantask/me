@@ -9,11 +9,15 @@ interface Props {
 
 export function ProjectCard({ project }: Props) {
   const ui = useUi()
-  const ref = useMagnetic<HTMLLIElement>(0.08)
+  // On the anchor, not the <li>. The <li> is the reveal target, and the reveal tween
+  // animates `y` on it — the magnetic pull was writing the same property from a
+  // second interpolator, so hovering a card mid-entrance made the two fight.
+  const ref = useMagnetic<HTMLAnchorElement>(0.08)
 
   return (
-    <li ref={ref} data-reveal className="group @container">
+    <li data-reveal className="group @container">
       <a
+        ref={ref}
         href={project.href}
         target="_blank"
         rel="noreferrer noopener"

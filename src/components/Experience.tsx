@@ -40,25 +40,40 @@ export function Experience() {
         },
       )
 
-      for (const [index, role] of roles.entries()) {
-        gsap.from(role, {
-          opacity: 0,
-          x: -18,
-          duration: DURATION.enter,
-          ease: EASE.enter,
-          scrollTrigger: { trigger: role, start: 'top 85%', once: true },
-        })
+      gsap.set(roles, { opacity: 0, x: -18 })
+      gsap.set(nodes, { scale: 0 })
 
-        const node = nodes[index]
-        if (node) {
-          gsap.from(node, {
-            scale: 0,
-            duration: 0.5,
-            ease: EASE.settle,
-            scrollTrigger: { trigger: role, start: 'top 82%', once: true },
+      // Batched rather than a tween-plus-trigger per role. Expanding the earlier
+      // roles puts twenty of these on the page, and the old shape built forty
+      // ScrollTriggers and forty tweens for them; this is one staggered tween per
+      // group that scrolls in together, with the callbacks coalesced to the refresh
+      // rate. The stagger also reads better — they arrive as a run, not a queue.
+      ScrollTrigger.batch(roles, {
+        start: 'top 85%',
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            x: 0,
+            duration: DURATION.enter,
+            ease: EASE.enter,
+            stagger: 0.08,
           })
-        }
-      }
+
+          const batchNodes = batch
+            .map((role) => role.querySelector<HTMLElement>('[data-node]'))
+            .filter((node) => node !== null)
+
+          if (batchNodes.length > 0) {
+            gsap.to(batchNodes, {
+              scale: 1,
+              duration: 0.5,
+              ease: EASE.settle,
+              stagger: 0.08,
+            })
+          }
+        },
+      })
     },
     // Language is deliberately not a dependency: switching it re-renders the same
     // elements in the same structure, and re-running would replay every entrance.

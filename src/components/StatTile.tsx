@@ -10,7 +10,11 @@ export function StatTile({ stat }: Props) {
 
   return (
     <li className="card p-6">
-      <p className="text-4xl font-semibold tracking-tight text-ember md:text-5xl">
+      {/*
+        tabular-nums pins every digit to the same width, so the counter cannot reflow
+        the line it sits on as it ticks — and the number stops jittering while it runs.
+      */}
+      <p className="text-4xl font-semibold tabular-nums tracking-tight text-ember md:text-5xl">
         {stat.prefix}
         {/*
           The animated span is hidden from assistive tech: mid-count values are noise.

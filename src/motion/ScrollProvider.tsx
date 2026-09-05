@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useRef } from 'react'
 import { ReactLenis, type LenisRef } from 'lenis/react'
 import { ScrollTrigger, gsap, refreshOnAssetsSettled } from './gsap'
+import { watchFrameBudget } from './frameBudget'
 import { useMotionEnvironment } from './useMotionEnvironment'
 
 interface Props {
@@ -29,6 +30,13 @@ export function ScrollProvider({ children }: Props) {
   const lenisRef = useRef<LenisRef>(null)
 
   useEffect(() => refreshOnAssetsSettled(), [])
+
+  // Started here because this is where lagSmoothing is turned off, which is what
+  // makes the ticker's delta the device's real frame time rather than a smoothed one.
+  useEffect(() => {
+    if (reduced) return
+    return watchFrameBudget()
+  }, [reduced])
 
   useEffect(() => {
     if (reduced) return

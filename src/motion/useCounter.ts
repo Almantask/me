@@ -21,6 +21,7 @@ export function useCounter<T extends HTMLElement>(value: number) {
       }
 
       const counter = { current: 0 }
+      let shown = 0
       node.textContent = '0'
 
       gsap.to(counter, {
@@ -29,7 +30,14 @@ export function useCounter<T extends HTMLElement>(value: number) {
         ease: EASE.enter,
         snap: { current: 1 },
         onUpdate: () => {
-          node.textContent = String(Math.round(counter.current))
+          // Writing textContent invalidates layout for the whole line. On the tail of
+          // the ease the snapped value repeats for frames at a time, so skipping the
+          // writes that would not change anything removes most of that work — and all
+          // of it once the count has landed.
+          const next = Math.round(counter.current)
+          if (next === shown) return
+          shown = next
+          node.textContent = String(next)
         },
         scrollTrigger: { trigger: node, start: 'top 90%', once: true },
       })
