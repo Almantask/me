@@ -1,6 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
-import { scrollToSection, settle } from './helpers'
+import { revealsSettled, scrollToSection, settle } from './helpers'
 
 type Page = import('@playwright/test').Page
 
@@ -34,6 +34,7 @@ test.describe('accessibility', () => {
     await page.goto('./')
     await settle(page)
     await scrollToSection(page, 'contact')
+    await revealsSettled(page)
 
     /*
       The hero is excluded here, and only here. Its copy is scrubbed to opacity 0.15
