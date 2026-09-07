@@ -15,11 +15,6 @@ export const socials: readonly Link[] = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/almantas-karpavicius' },
   { label: 'GitHub', href: 'https://github.com/Almantask' },
   { label: 'YouTube', href: 'https://www.youtube.com/c/AlmantasKarpavi%C4%8Dius' },
-  { label: '„C# Inn“ Discord', href: 'https://discord.gg/rCMKcUU' },
-  {
-    label: 'Microsoft MVP',
-    href: 'https://mvp.microsoft.com/en-us/PublicProfile/5004259?fullName=Almantas%20Karpavi%C4%8Dius',
-  },
 ]
 
 export const about: readonly string[] = [
