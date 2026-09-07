@@ -105,19 +105,18 @@ A single client-rendered React app rather than Astro or Next: the page ships GSA
 
 ## CI/CD
 
-`.github/workflows/ci.yml` — five jobs, and nothing reaches production that has not passed every check.
+`.github/workflows/ci.yml` — four jobs, and nothing reaches production that has not passed every check. Browser tests are not part of CI; run `npm run e2e` locally.
 
 | Job | When | What |
 | --- | --- | --- |
 | `verify` | PR + main | lint, typecheck, unit tests |
-| `e2e` | PR + main | Playwright on the real production bundle, desktop and mobile; report uploaded on failure |
 | `build` | PR + main | production build, bundle-size budget gate |
 | `deploy` | main | GitHub Pages |
 | `audit` | main, post-deploy | Lighthouse CI against the live URL |
 
-Two things that are easy to get wrong and are therefore checked mechanically:
+Two things that are easy to get wrong and are therefore checked mechanically (the browser-based checks locally, the budget in CI):
 
-- **`e2e/smoke.spec.ts` asserts no request resolves outside `/me/`.** A root-absolute `/img/x.jpg` works perfectly in `npm run dev` and 404s in production. This is the guard.
+- **`e2e/smoke.spec.ts` asserts no request resolves outside `/me/`.** (local `npm run e2e`) A root-absolute `/img/x.jpg` works perfectly in `npm run dev` and 404s in production. This is the guard.
 - **`npm run budget` fails the build if eager JS grows past 175 kB gzip.** Motion's DOM feature bundle is dynamically imported and counted separately.
 - **axe runs over both languages in both themes.** Lithuanian sets noticeably longer strings, so it can break a layout or a contrast ratio that English never does. The 320px overflow check runs in Lithuanian for the same reason.
 
