@@ -7,7 +7,6 @@ export const ui: UiStrings = {
   switchLanguage: 'Skaityti lietuviškai',
   heroCtaContact: 'Get in touch',
   heroCtaWork: 'See my work',
-  heroFactsLabel: 'At a glance',
   heroPhotoAlt:
     'Almantas Karpavičius on stage mid-talk, one hand raised, smiling at the audience',
   sectionsNavLabel: 'Sections',

@@ -22,13 +22,6 @@ export const socials: readonly Link[] = [
   },
 ]
 
-export const heroFacts: readonly string[] = [
-  '3× Microsoft MVP',
-  '2 knygos',
-  '7000+ bendruomenės narių',
-  '100+ pravestų pamokų',
-]
-
 export const about: readonly string[] = [
   'Vienu karjeros momentu teko apsispręsti: techninis kelias ar vadovavimo. Nors programuoti man patinka, auginti žmones patinka kur kas labiau nei auginti kodo bazes. 1:1 pokalbiai — mėgstamiausias mano profesinio laiko panaudojimas.',
   'Per visą karjerą mentorių turėjau vos trumpą laiką, bet nauda buvo milžiniška. Todėl nusprendžiau: būsiu tas žmogus, kurio man pačiam taip trūko. Būtent ši nuostata pastūmėjo surengti dvi C# stovyklas, trejus metus vesti Coding Dojo KTU, parašyti dvi knygas, pravesti 100+ programavimo pamokų ir įkurti „C# Inn“ bendruomenę. Man tikrai patinka dalintis tuo, ką moku, ir padėti kitiems augti.',

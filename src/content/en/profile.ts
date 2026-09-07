@@ -23,14 +23,6 @@ export const socials: readonly Link[] = [
   },
 ]
 
-/** Shown under the hero. Deliberately the four numbers that say the most. */
-export const heroFacts: readonly string[] = [
-  '3× Microsoft MVP',
-  '2 books',
-  '7000+ community members',
-  '100+ lessons taught',
-]
-
 /** His own words, lightly edited. Order carries the argument. */
 export const about: readonly string[] = [
   'At some point in my career I had to decide: the technical route, or the management route. Although I like coding, I like growing people a lot more than growing codebases. 1:1s are my favourite spend of professional time.',

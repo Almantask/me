@@ -7,7 +7,6 @@ export const ui: UiStrings = {
   switchLanguage: 'Read in English',
   heroCtaContact: 'Susisiekime',
   heroCtaWork: 'Mano darbai',
-  heroFactsLabel: 'Trumpai',
   heroPhotoAlt:
     'Almantas Karpavičius scenoje pranešimo metu, pakelta ranka, šypsosi žiūrovams',
   sectionsNavLabel: 'Skyriai',

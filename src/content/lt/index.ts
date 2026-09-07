@@ -1,5 +1,5 @@
 import type { ContentBundle } from '../types'
-import { about, education, heroFacts, hobbies, beyond, languages, profile, quote, sections, socials } from './profile'
+import { about, education, hobbies, beyond, languages, profile, quote, sections, socials } from './profile'
 import { values } from './values'
 import { experience } from './experience'
 import { projects } from './projects'
@@ -12,7 +12,6 @@ import { ui } from './ui'
 export const lt: ContentBundle = {
   profile,
   socials,
-  heroFacts,
   about,
   quote,
   values,

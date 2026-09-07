@@ -139,7 +139,6 @@ describe('language parity', () => {
   it('counts the same number of about paragraphs and mentorship beats', () => {
     expect(lt.about.length).toBe(en.about.length)
     expect(lt.mentorshipBeats.length).toBe(en.mentorshipBeats.length)
-    expect(lt.heroFacts.length).toBe(en.heroFacts.length)
   })
 })
 

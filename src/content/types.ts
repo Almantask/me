@@ -124,7 +124,6 @@ export interface UiStrings {
   readonly switchLanguage: string
   readonly heroCtaContact: string
   readonly heroCtaWork: string
-  readonly heroFactsLabel: string
   readonly heroPhotoAlt: string
   readonly sectionsNavLabel: string
 
@@ -195,7 +194,6 @@ export interface UiStrings {
 export interface ContentBundle {
   readonly profile: Profile
   readonly socials: readonly Link[]
-  readonly heroFacts: readonly string[]
   readonly about: readonly string[]
   readonly quote: Quote
   readonly values: readonly Value[]

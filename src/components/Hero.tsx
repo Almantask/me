@@ -6,7 +6,7 @@ import { useContent } from '../i18n/useContent'
 import { HeroPhoto } from './HeroPhoto'
 
 export function Hero() {
-  const { heroFacts, profile, ui } = useContent()
+  const { profile, ui } = useContent()
   const scope = useRef<HTMLElement>(null)
   const nameRef = useRef<HTMLHeadingElement>(null)
   const photoRef = useRef<HTMLDivElement>(null)
@@ -127,7 +127,7 @@ export function Hero() {
 
   return (
     <section ref={scope} id="top" aria-labelledby="hero-heading" className="relative overflow-hidden">
-      <div className="shell grid min-h-[100svh] items-center gap-12 pt-28 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-32">
+      <div className="shell grid content-center items-center gap-12 pt-28 pb-16 lg:min-h-[100svh] lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-32">
         <div ref={copyRef}>
           <p data-hero-stage className="eyebrow">
             {profile.role} · {profile.org}
@@ -166,19 +166,6 @@ export function Hero() {
               {ui.heroCtaWork}
             </a>
           </div>
-
-          <ul
-            data-hero-stage
-            aria-label={ui.heroFactsLabel}
-            className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted"
-          >
-            {heroFacts.map((fact) => (
-              <li key={fact} className="flex items-center gap-2">
-                <span aria-hidden="true" className="size-1.5 rounded-full bg-ember" />
-                {fact}
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="relative">
