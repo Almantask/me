@@ -2,11 +2,11 @@ import type { Education, Link, Profile, Quote, Section } from '../types'
 
 export const profile: Profile = {
   name: 'Almantas Karpavičius',
-  role: 'Inžinerijos vadovas',
+  role: 'Programų inžinerijos vadovas',
   org: 'Nord Security',
-  tagline: 'Man patinka programuoti. Auginti žmones — kur kas labiau.',
+  tagline: 'Man patinka programuoti. Ugdyti žmones patinka dar labiau.',
   intro:
-    'Lyderis-tarnas, autorius, viešasis kalbėtojas, mokytojas ir mentorius, pasižymintis aistra žmonių auginimui, programinės įrangos projektavimui ir profesinės bendruomenės kūrimui.',
+    'Darbe vadovauju komandai, o be jo rašau, skaitau pranešimus konferencijose, mokau ir esu mentorius.',
   location: 'Kaunas, Lietuva',
   email: 'almantusk@gmail.com',
 }
@@ -18,31 +18,29 @@ export const socials: readonly Link[] = [
 ]
 
 export const about: readonly string[] = [
-  'Vienu karjeros momentu teko apsispręsti: techninis kelias ar vadovavimo. Nors programuoti man patinka, auginti žmones patinka kur kas labiau nei auginti kodo bazes. 1:1 pokalbiai — mėgstamiausias mano profesinio laiko panaudojimas.',
-  'Per visą karjerą mentorių turėjau vos trumpą laiką, bet nauda buvo milžiniška. Todėl nusprendžiau: būsiu tas žmogus, kurio man pačiam taip trūko. Būtent ši nuostata pastūmėjo surengti dvi C# stovyklas, trejus metus vesti Coding Dojo KTU, parašyti dvi knygas, pravesti 100+ programavimo pamokų ir įkurti „C# Inn“ bendruomenę. Man tikrai patinka dalintis tuo, ką moku, ir padėti kitiems augti.',
-  'Pastaruosius trejus metus kuriu su dirbtiniu intelektu — programinę įrangą, agentus, muziką — ir aiškinuosi, kaip klasikinės inžinerijos praktikos laikosi, kai pusę kodo parašo modelis.',
-  'Esu idealistas. Tikiu, kad jei kiekvienas prisidėtų prie pokalbio, o ne gintų savo nuomonę, pasaulis taptų geresne vieta. Noriu paskatinti kitus padėti už „ačiū“ — dėl bendro augimo ir dėl ramaus miego naktimis.',
+  'Vienu karjeros momentu teko apsispręsti: techninis kelias ar vadovavimas. Programuoti man patinka, bet padėti žmonėms augti man svarbiau. Labiausiai darbe mėgstu 1:1 pokalbius.',
+  'Per karjerą mentorių turėjau vos trumpą laiką, bet tai man labai padėjo. Todėl nusprendžiau būti tuo žmogumi kitiems. Dėl to surengiau du intensyvius C# kursus, trejus metus vedžiau Coding Dojo KTU, parašiau dvi knygas, pravedžiau 100+ programavimo pamokų ir įkūriau „C# Inn“ bendruomenę. Man tikrai patinka dalytis tuo, ką moku.',
+  'Pastaruosius trejus metus kuriu su dirbtiniu intelektu (programinę įrangą, agentus, muziką) ir aiškinuosi, ar klasikinės inžinerijos praktikos dar veikia, kai pusę kodo parašo modelis.',
+  'Esu idealistas. Tikiu, kad pasaulis būtų gerokai geresnis, jei kiekvienas prisidėtų prie pokalbio, o ne gintų savo nuomonę. Noriu paskatinti kitus padėti už „ačiū“: dėl bendro augimo ir kad naktį ramiai miegotum.',
 ]
 
 export const quote: Quote = {
   text:
-    'Saugoti neįmanomą svajonę yra kvaila, sako jie. Bet būtent svajonė, verta saugojimo, ir palaiko šią kvailą širdį gyvą.',
+    'Saugoti neįmanomą svajonę yra kvaila, sako jie. Bet būtent svajonė, kurią verta saugoti, ir leidžia šiai kvailai širdžiai gyventi.',
   source: 'Rurouni Kenshin („Samurai X“)',
   note: 'Citata — ir apskritai nuostata — man labai brangi.',
 }
 
 export const hobbies: readonly string[] = [
-  'Dungeon Master',
-  'D&D',
+  'D&D žaidimų vedimas',
   'Stalo žaidimai',
   'Kompiuteriniai žaidimai',
   'Filosofija',
-  'Viešasis kalbėjimas',
-  'Sporto salė',
+  'Sportas',
 ]
 
 export const beyond =
-  'Ne darbe vedu stalo žaidimus — esu Dungeon Master, ir nemažai mano šalutinių projektų atsirado tiesiog todėl, kad jų prireikė kampanijai. Likęs laisvas laikas — stalo žaidimai, kompiuteriniai žaidimai, filosofija ir sporto salė.'
+  'Laisvalaikiu vedu stalo žaidimus. Esu Dungeon Master, ir nemažai mano šalutinių projektų atsirado todėl, kad jų prireikė kampanijai. Likęs laisvas laikas tenka stalo ir kompiuteriniams žaidimams, filosofijai ir sportui.'
 
 export const languages: readonly string[] = [
   'Lietuvių (gimtoji)',
@@ -74,6 +72,6 @@ export const sections: readonly Section[] = [
   { id: 'projects', label: 'Projektai' },
   { id: 'speaking', label: 'Pranešimai' },
   { id: 'community', label: 'Bendruomenė' },
-  { id: 'writing', label: 'Kūryba' },
+  { id: 'writing', label: 'Knygos' },
   { id: 'contact', label: 'Kontaktai' },
 ]

@@ -7,7 +7,7 @@ export const profile = {
   /** The one line that should stick if a reader takes nothing else away. */
   tagline: 'I like coding. I like growing people a lot more.',
   intro:
-    'Servant leader, author, public speaker, teacher and mentor — with a passion for people growth, software design, and building an engineering community.',
+    'My day job is leading a team. Outside it, I write, speak at conferences, teach and mentor.',
   location: 'Kaunas, Lithuania',
   email: 'almantusk@gmail.com',
 } as const
@@ -20,10 +20,10 @@ export const socials: readonly Link[] = [
 
 /** His own words, lightly edited. Order carries the argument. */
 export const about: readonly string[] = [
-  'At some point in my career I had to decide: the technical route, or the management route. Although I like coding, I like growing people a lot more than growing codebases. 1:1s are my favourite spend of professional time.',
-  'In my career I had a mentor for only a brief time, but I benefited enormously from it. So I decided I would be the person I needed so much back then. That mindset is what pushed me to organise two C# bootcamps, run a Coding Dojo at KTU for three years, write two books, give 100+ programming lessons, and start the C# Inn community. I really like sharing what I know and helping others grow.',
-  'For the last three years I have been building things with AI — software, agents, music — and working out how classical engineering practice holds up when a model writes half the code.',
-  'I am an idealist. I believe that if everyone contributed to a conversation rather than defended their opinion, the world would grow to be a better place. I want to encourage others to help for a "thank you", for the sake of mutual growth and sleeping well at night.',
+  'At some point in my career I had to decide: the technical route or the management route. I like coding, but helping people grow matters more to me. 1:1s are my favourite spend of professional time.',
+  'In my career I had a mentor for only a brief time, and it helped me a lot. So I decided to be that person for others. That is why I organised two C# bootcamps, ran a Coding Dojo at KTU for three years, wrote two books, taught 100+ programming lessons and started the C# Inn community. I really like sharing what I know.',
+  'For the last three years I have been building things with AI (software, agents, music) and working out how classical engineering practice holds up when a model writes half the code.',
+  'I am an idealist. I believe the world would be a lot better if people contributed to a conversation instead of defending their opinion. I want to encourage others to help for a "thank you", for mutual growth and for sleeping well at night.',
 ]
 
 export const quote = {
@@ -35,16 +35,14 @@ export const quote = {
 
 export const hobbies: readonly string[] = [
   'Dungeon mastering',
-  'D&D',
-  'Tabletop games',
+  'Board games',
   'PC games',
   'Philosophy',
-  'Public speaking',
   'Gym',
 ]
 
 export const beyond =
-  'Outside work I run tabletop games — I am a dungeon master, and a fair few of my side projects exist because a campaign needed them. The rest of my free time goes to board games, PC games, philosophy and the gym.'
+  'Outside work I run tabletop games. I am a dungeon master, and a fair few of my side projects exist because a campaign needed them. The rest of my free time goes to board games, PC games, philosophy and the gym.'
 
 export const languages: readonly string[] = ['Lithuanian (native)', 'English (C1)', 'Russian (A1)']
 

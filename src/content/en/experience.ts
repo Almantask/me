@@ -12,7 +12,7 @@ export const experience: readonly Role[] = [
       'Leading a team of 8–11 engineers (backend, web, Android, iOS) and 3 QAs across manual and automation, on NordPass.',
     highlights: [
       '1:1s, goal setting, mentoring and coaching across a cross-platform team.',
-      'Own effective processes, delegation and technical direction — RFCs, ADRs and PoCs.',
+      'Own processes, delegation and technical direction: RFCs, ADRs and PoCs.',
       'Coordinate with 11 other teams inside NordPass.',
       'Second in line after customer support when a client hits a problem.',
     ],
@@ -38,12 +38,12 @@ export const experience: readonly Role[] = [
   },
   {
     id: 'bpb-writer',
-    role: 'Writer',
+    role: 'Author',
     org: 'BPB Publications',
     start: '2023-08',
     end: '2024-12',
     summary:
-      'Sole author of "Software Craftsmanship using AI" — how classical best practices hold up, and where they have to change, once AI is writing code with you.',
+      'Sole author of "Software Craftsmanship using AI": how classical best practices hold up, and where they have to change, once AI is writing code with you.',
     highlights: [],
     tech: ['Technical writing'],
     featured: true,
@@ -57,7 +57,7 @@ export const experience: readonly Role[] = [
     summary:
       'Tech lead and Scrum Master across microservices for credit scores and the suggestions that help people improve them.',
     highlights: [
-      'Recruited two teams — 4 programmers and 2 testers.',
+      'Recruited two teams: 4 programmers and 2 testers.',
       'Ran the internship process end to end: interviews, team leading, acting as their PO.',
       'Organised cross-team Coding Dojo sessions.',
     ],
@@ -82,7 +82,7 @@ export const experience: readonly Role[] = [
     start: '2020-11',
     end: '2022-09',
     summary:
-      'Co-authored "The C# Workshop", writing 5 of its 10 chapters — C#, git, Azure and testing fundamentals.',
+      'Co-authored "The C# Workshop", writing 5 of its 10 chapters on C#, git, Azure and testing fundamentals.',
     highlights: [],
     tech: ['Technical writing', 'C#'],
     featured: false,
@@ -105,7 +105,7 @@ export const experience: readonly Role[] = [
     start: '2019-10',
     end: '2021-02',
     summary:
-      'Built Open Banking solutions — new microservices and maintenance of existing ones: GDPR data filter, financial transactions, banks, orchestrator.',
+      'Built Open Banking solutions: new microservices and maintenance of existing ones: GDPR data filter, financial transactions, banks, orchestrator.',
     highlights: [],
     tech: ['C#', 'Service Fabric', 'Azure', 'Octopus', 'SQL', 'git', 'CI/CD'],
     featured: false,
@@ -129,7 +129,7 @@ export const experience: readonly Role[] = [
     start: '2017-10',
     end: '2019-10',
     summary:
-      'Web services and Exact plugins — including an abstraction library that made the Exact integration unit-testable.',
+      'Web services and Exact plugins, including an abstraction library that made the Exact integration unit-testable.',
     highlights: [],
     tech: ['.NET', 'C#', 'WCF', 'WinForms', 'WebForms', 'PHP', 'MSSQL', 'svn', 'tfs'],
     featured: false,

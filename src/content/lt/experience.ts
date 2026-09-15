@@ -4,15 +4,15 @@ import type { Role } from '../types'
 export const experience: readonly Role[] = [
   {
     id: 'nordsecurity-em',
-    role: 'Inžinerijos vadovas',
+    role: 'Programų inžinerijos vadovas',
     org: 'Nord Security',
     start: '2026-01',
     end: null,
     summary:
-      'Vadovauju 8–11 programuotojų (backend, web, Android, iOS) ir 3 testuotojų komandai — rankinis ir automatinis testavimas — dirbančiai prie NordPass.',
+      'Vadovauju 8–11 programuotojų (backend, web, Android, iOS) ir 3 testuotojų (rankinis ir automatinis testavimas) komandai, dirbančiai prie NordPass.',
     highlights: [
       '1:1 pokalbiai, tikslų kėlimas, mentorystė ir koučingas kelių platformų komandoje.',
-      'Atsakingas už efektyvius procesus, darbų paskirstymą ir techninę kryptį — RFC, ADR, PoC.',
+      'Atsakingas už procesus, darbų paskirstymą ir techninę kryptį: RFC, ADR, PoC.',
       'Koordinacija su 11 kitų NordPass komandų.',
       'Antra grandis po klientų aptarnavimo, kai klientas susiduria su problema.',
     ],
@@ -28,7 +28,7 @@ export const experience: readonly Role[] = [
     summary:
       'Vadovavau 4 programuotojų ir 2 testuotojų komandai, kūrusiai pranešimų srautų platformą skrydžių statusams ir tvarkaraščiams siųsti — naujas produktas, jau apdorojantis 100 mln. atnaujinimų per parą.',
     highlights: [
-      'Sumažinau incidentų skaičių 90 % ir perpus sutrumpinau kelią iki produkcijos.',
+      'Sumažinau incidentų skaičių 90 % ir perpus sutrumpinau laiką iki išleidimo.',
       'Metus ėjau laikino produkto savininko pareigas greta vadovavimo ir Scrum Master vaidmens.',
       'Palaikiau ir modernizavau legacy sistemas, kartu pats programuodamas.',
       'Pradėjau „Share Learn Grow“ sesijas ir vedžiau Coding Dojo, kad komandos mokytųsi vienos iš kitų.',
@@ -38,12 +38,12 @@ export const experience: readonly Role[] = [
   },
   {
     id: 'bpb-writer',
-    role: 'Rašytojas',
+    role: 'Autorius',
     org: 'BPB Publications',
     start: '2023-08',
     end: '2024-12',
     summary:
-      'Knygos „Software Craftsmanship using AI“ autorius — kaip klasikinės geros praktikos laikosi ir kur joms tenka keistis, kai kodą rašai kartu su dirbtiniu intelektu.',
+      'Knygos „Software Craftsmanship using AI“ autorius: kaip klasikinės geros praktikos veikia ir kur joms tenka keistis, kai kodą rašai kartu su dirbtiniu intelektu.',
     highlights: [],
     tech: ['Techninis rašymas'],
     featured: true,
@@ -55,9 +55,9 @@ export const experience: readonly Role[] = [
     start: '2022-09',
     end: '2023-10',
     summary:
-      'Techninis vadovas ir Scrum Master mikroservisuose, skirtuose kreditingumo įvertinimams ir patarimams, kaip juos pagerinti.',
+      'Techninis vadovas ir Scrum Master komandose, kuriančiose mikroservisus kreditingumo įvertinimams ir patarimams, kaip juos pagerinti.',
     highlights: [
-      'Subūriau dvi komandas — 4 programuotojus ir 2 testuotojus.',
+      'Subūriau dvi komandas: 4 programuotojus ir 2 testuotojus.',
       'Vedžiau visą praktikos procesą: interviu, vadovavimą praktikantams, jų produkto savininko vaidmenį.',
       'Organizavau tarpkomandines Coding Dojo sesijas.',
     ],
@@ -82,7 +82,7 @@ export const experience: readonly Role[] = [
     start: '2020-11',
     end: '2022-09',
     summary:
-      'Knygos „The C# Workshop“ bendraautoris — parašiau 5 iš 10 skyrių apie C#, git, Azure ir testavimo pagrindus.',
+      'Knygos „The C# Workshop“ bendraautoris: parašiau 5 iš 10 skyrių apie C#, git, Azure ir testavimo pagrindus.',
     highlights: [],
     tech: ['Techninis rašymas', 'C#'],
     featured: false,
@@ -105,7 +105,7 @@ export const experience: readonly Role[] = [
     start: '2019-10',
     end: '2021-02',
     summary:
-      'Kūriau „Open Banking“ sprendimus — naujus mikroservisus ir palaikiau esamus: GDPR duomenų filtras, finansinės transakcijos, bankai, orkestratorius.',
+      '„Open Banking“ sprendimai: kūriau naujus mikroservisus ir prižiūrėjau esamus (GDPR duomenų filtras, finansinės transakcijos, bankai, orkestratorius).',
     highlights: [],
     tech: ['C#', 'Service Fabric', 'Azure', 'Octopus', 'SQL', 'git', 'CI/CD'],
     featured: false,
@@ -129,7 +129,7 @@ export const experience: readonly Role[] = [
     start: '2017-10',
     end: '2019-10',
     summary:
-      'Web servisai ir Exact įskiepiai — įskaitant abstrakcijų biblioteką, leidusią Exact integraciją padengti vienetų testais.',
+      'Web servisai ir Exact įskiepiai, įskaitant abstrakcijų biblioteką, leidusią Exact integraciją padengti vienetų testais.',
     highlights: [],
     tech: ['.NET', 'C#', 'WCF', 'WinForms', 'WebForms', 'PHP', 'MSSQL', 'svn', 'tfs'],
     featured: false,

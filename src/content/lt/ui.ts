@@ -12,7 +12,7 @@ export const ui: UiStrings = {
   sectionsNavLabel: 'Skyriai',
 
   aboutEyebrow: 'Apie',
-  aboutTitle: 'Pasirinkau auginti žmones, o ne kodo bazes.',
+  aboutTitle: 'Kodėl pasirinkau vadovavimą.',
   educationHeading: 'Išsilavinimas',
   languagesHeading: 'Kalbos',
 
@@ -20,18 +20,16 @@ export const ui: UiStrings = {
   valuesTitle: 'Trys dalykai, kurių neiškeisiu.',
 
   experienceEyebrow: 'Patirtis',
-  experienceTitle: 'Dešimt metų kuriant programinę įrangą — ir žmones, kurie ją kuria.',
-  experienceLede:
-    'Naujausios pareigos pirmiausia. Ankstesnės niekur nedingo — tiesiog ne dėl jų čia atėjote.',
+  experienceTitle: 'Dešimt metų programinėje įrangoje, pastaruosius kelerius vadovaujant komandoms.',
+  experienceLede: 'Naujausios pareigos pirmiausia. Ankstesnes rasite paspaudę žemiau.',
   showEarlierRoles: (count) => `Rodyti ankstesnes pareigas (${count})`,
   hideEarlierRoles: 'Slėpti ankstesnes pareigas',
   present: 'dabar',
   techLabel: (org) => `Technologijos, naudotos ${org}`,
 
   projectsEyebrow: 'Projektai',
-  projectsTitle: 'Dalykai, kuriuos kuriu niekam neprašius.',
-  projectsLede:
-    'Dažniausiai gimę iš poreikio prie savo paties stalo — kampanijos, kuriai prireikė garso takelio; kurso, kuriam prireikė užduočių; klausimo, kuriam prireikė atsakymo.',
+  projectsTitle: 'Dalykai, kuriuos kuriu laisvalaikiu.',
+  projectsLede: 'Dauguma jų atsirado todėl, kad kažko prireikė mano D&D stalui ar mokiniams.',
   openProject: 'Atidaryti',
   projectGallery: (name) => `${name} ekrano nuotraukos`,
   previousScreenshot: 'Ankstesnė nuotrauka',
@@ -41,19 +39,19 @@ export const ui: UiStrings = {
   speakingEyebrow: 'Pranešimai',
   speakingTitle: 'Penkeri metai konferencijų scenose.',
   speakingLede:
-    'BDD, testavimas, o pastaruoju metu — ką visa tai reiškia, kai pusę kodo parašo dirbtinis intelektas.',
+    'BDD ir testavimas, o pastaruoju metu ir tai, kaip jie keičiasi dirbant su dirbtiniu intelektu.',
   watchTalk: 'Žiūrėti',
   watchTalkContext: 'žiūrėti įrašą per YouTube',
 
   communityEyebrow: 'Bendruomenė ir mentorystė',
-  communityTitle: 'Būsiu tas žmogus, kurio man pačiam taip trūko karjeroje.',
+  communityTitle: 'Kodėl esu mentorius ir kas iš to išėjo.',
 
-  writingEyebrow: 'Kūryba ir įvertinimai',
-  writingTitle: 'Dvi knygos ir bendruomenė, dėl kurios jas verta buvo rašyti.',
+  writingEyebrow: 'Knygos ir apdovanojimai',
+  writingTitle: 'Dvi knygos ir keli įvertinimai pakeliui.',
   awardsHeading: 'Apdovanojimai',
   findOnAmazon: 'Rasti Amazon',
 
-  beyondEyebrow: 'Ne darbe',
+  beyondEyebrow: 'Laisvalaikis',
   beyondTitle: 'Dungeon Master, idealistas, retkarčiais filosofas.',
 
   contactEyebrow: 'Kontaktai',
@@ -73,12 +71,12 @@ export const ui: UiStrings = {
   errorMessage: 'Šiek tiek daugiau detalių, prašau — bent 10 simbolių.',
   statusSending: 'Siunčiama…',
   statusSent: 'Ačiū — žinutė pakeliui.',
-  statusFailed: 'Nepavyko išsiųsti. Parašykite man tiesiogiai el. paštu ir aš pastebėsiu.',
+  statusFailed: 'Nepavyko išsiųsti. Parašykite man tiesiogiai el. paštu ir aš atsakysiu.',
   statusHandedOff: 'Turėtų atsidaryti jūsų pašto programa su paruošta žinute.',
   mailSubject: (name) => `Sveiki, rašo ${name}`,
 
-  footerNote: 'Sukurta su React, GSAP ir kiek per dideliu entuziazmu.',
-  metaTitle: 'Almantas Karpavičius — inžinerijos vadovas, autorius, mentorius',
+  footerNote: 'Sukurta su React, GSAP ir dideliu entuziazmu.',
+  metaTitle: 'Almantas Karpavičius — programų inžinerijos vadovas, autorius, mentorius',
   metaDescription:
-    'Inžinerijos vadovas Nord Security. 3× Microsoft MVP, dviejų knygų autorius, konferencijų pranešėjas ir mentorius Idealogue, KTU bei Nord Security.',
+    'Programų inžinerijos vadovas Nord Security. 3× Microsoft MVP, dviejų knygų autorius, konferencijų pranešėjas ir mentorius Idealogue, KTU bei Nord Security.',
 }

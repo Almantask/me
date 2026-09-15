@@ -16,7 +16,7 @@ export const projects: readonly Project[] = [
     name: 'Sunder',
     years: '2026 — now',
     blurb: 'Suno track downloader and music classifier that runs the model on the host GPU.',
-    tech: ['Python', 'GPU', 'Audio ML'],
+    tech: ['Python'],
     href: 'https://github.com/Almantask/sunder',
   },
   {
@@ -33,7 +33,7 @@ export const projects: readonly Project[] = [
     name: 'Ready-to-Print Tokenizer',
     years: '2026',
     blurb:
-      'Turns any picture into a round, tinted D&D token, then lays a set of them out on A4 — 70 to a page, printed at exactly one inch.',
+      'Turns any picture into a round, tinted D&D token, then lays a set of them out on A4: 70 to a page, printed at exactly one inch.',
     tech: ['TypeScript', 'Canvas', 'PDF'],
     href: 'https://almantask.github.io/dnd-ready-to-print-tokenizer/',
   },
@@ -95,17 +95,17 @@ export const projects: readonly Project[] = [
     years: '2020',
     blurb:
       'A free, exercise-driven course for learning C# from scratch. Still the thing people email me about most.',
-    tech: ['C#', '.NET', 'Teaching'],
+    tech: ['C#', '.NET'],
     href: 'https://github.com/Almantask/CSharp-From-Zero-To-Hero',
-    badge: '1000+ stars',
+    badge: '1500+ stars',
   },
   {
     id: 'philosophers-timeline',
     name: "Philosophers' Timeline",
     years: '2023',
     blurb:
-      'A pragmatic site capturing what I know about philosophers, built around fast search rather than pretty pages.',
-    tech: ['TypeScript', 'Search'],
+      'A pragmatic site capturing what I know about philosophers, built for fast search.',
+    tech: ['TypeScript'],
     href: 'https://github.com/Almantask/philosophers-timeline',
   },
   {
@@ -113,7 +113,7 @@ export const projects: readonly Project[] = [
     name: 'Japanese Crossword',
     years: '2018',
     blurb: 'A generator for nonogram puzzles.',
-    tech: ['C#', 'Algorithms'],
+    tech: ['C#'],
     href: 'https://github.com/Almantask/JapaneseCrossword',
   },
 ]

@@ -15,7 +15,7 @@ export const projects: readonly Project[] = [
     name: 'Sunder',
     years: '2026 — dabar',
     blurb: 'Suno kūrinių atsisiuntiklis ir muzikos klasifikatorius, modelį sukantis vietinėje GPU.',
-    tech: ['Python', 'GPU', 'Garso ML'],
+    tech: ['Python'],
     href: 'https://github.com/Almantask/sunder',
   },
   {
@@ -32,7 +32,7 @@ export const projects: readonly Project[] = [
     name: 'Ready-to-Print Tokenizer',
     years: '2026',
     blurb:
-      'Bet kokį paveikslėlį paverčia apvaliu, spalvinto krašto D&D žetonu ir sudėlioja jų rinkinį A4 lape — po 70 lape, tiksliai colio dydžio.',
+      'Bet kokį paveikslėlį paverčia apvaliu, spalvinto krašto D&D žetonu ir sudėlioja jų rinkinį A4 lape: po 70 viename lape, kiekvienas tiksliai colio dydžio.',
     tech: ['TypeScript', 'Canvas', 'PDF'],
     href: 'https://almantask.github.io/dnd-ready-to-print-tokenizer/',
   },
@@ -68,7 +68,7 @@ export const projects: readonly Project[] = [
     name: 'Arcanum Audio',
     years: '2025 — dabar',
     blurb:
-      'Garsų pultas ir aplinkos garsų maišytuvas stalo RPG žaidimams. Pirmiausia — savo paties stalui.',
+      'Garsų pultas ir aplinkos garsų maišytuvas stalo RPG žaidimams. Pirmiausia sukurtas savo paties stalui.',
     tech: ['TypeScript', 'Web Audio', 'React'],
     href: 'https://almantask.github.io/rpg-audio-mixer-web/',
   },
@@ -95,17 +95,17 @@ export const projects: readonly Project[] = [
     years: '2020',
     blurb:
       'Nemokamas, užduotimis paremtas C# kursas nuo nulio. Vis dar tai, dėl ko man dažniausiai parašo.',
-    tech: ['C#', '.NET', 'Mokymas'],
+    tech: ['C#', '.NET'],
     href: 'https://github.com/Almantask/CSharp-From-Zero-To-Hero',
-    badge: '1000+ žvaigždučių',
+    badge: '1500+ žvaigždučių',
   },
   {
     id: 'philosophers-timeline',
     name: "Philosophers' Timeline",
     years: '2023',
     blurb:
-      'Pragmatiška svetainė, kaupianti mano žinias apie filosofus — su fokusu į greitą paiešką, o ne gražius puslapius.',
-    tech: ['TypeScript', 'Paieška'],
+      'Pragmatiška svetainė, kaupianti mano žinias apie filosofus, pritaikyta greitai paieškai.',
+    tech: ['TypeScript'],
     href: 'https://github.com/Almantask/philosophers-timeline',
   },
   {
@@ -113,7 +113,7 @@ export const projects: readonly Project[] = [
     name: 'Japanese Crossword',
     years: '2018',
     blurb: 'Japoniškų kryžiažodžių generatorius.',
-    tech: ['C#', 'Algoritmai'],
+    tech: ['C#'],
     href: 'https://github.com/Almantask/JapaneseCrossword',
   },
 ]

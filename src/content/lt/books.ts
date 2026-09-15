@@ -8,7 +8,7 @@ export const books: readonly Book[] = [
     year: 2024,
     credit: 'Autorius',
     blurb:
-      'Kaip toliau taikyti klasikines geras praktikas — projektavimą, peržiūras, testavimą — ir kartu iš tikrųjų pasinaudoti AI, o ne apsimesti, kad vieno iš jų nėra.',
+      'Kaip toliau taikyti klasikines geras praktikas (projektavimą, peržiūras, testavimą) ir kartu iš tikrųjų pasinaudoti dirbtiniu intelektu.',
     href: 'https://www.amazon.com/Software-Craftsmanship-Using-Practical-reviewing/dp/9365892422',
   },
   {

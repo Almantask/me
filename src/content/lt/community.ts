@@ -2,19 +2,18 @@ import type { CommunityItem, Stat } from '../types'
 
 export const mentorshipBeats: readonly string[] = [
   'Per visą karjerą mentorių turėjau vos trumpą laiką.',
-  'Nauda buvo milžiniška — didesnė nei iš bet ko kito tais metais.',
+  'Nauda buvo milžiniška.',
   'Todėl nusprendžiau, kad tuo žmogumi kitam būsiu aš.',
 ]
 
-export const mentorshipLede =
-  'Kodėl mentorystė? Todėl, kad ta mano versija, kuriai jos labiausiai reikėjo, jos dažniausiai neturėjo. Viskas, kas žemiau, prasidėjo nuo to.'
+export const mentorshipLede = 'Viskas šiame skyriuje kyla iš vieno sprendimo.'
 
 export const stats: readonly Stat[] = [
   { id: 'members', value: 7000, suffix: '+', label: '„C# Inn“ bendruomenės narių' },
   { id: 'lessons', value: 100, suffix: '+', label: 'pravestų programavimo pamokų' },
-  { id: 'dojo', value: 3, suffix: ' m.', label: 'Coding Dojo KTU' },
-  { id: 'bootcamps', value: 2, label: 'surengtos C# stovyklos' },
-  { id: 'interviews', value: 8, label: 'interviu su srities vardais' },
+  { id: 'dojo', value: 3, label: 'metus vedžiau Coding Dojo KTU' },
+  { id: 'bootcamps', value: 2, label: 'surengti intensyvūs C# kursai' },
+  { id: 'interviews', value: 8, label: 'interviu su žinomais srities žmonėmis' },
   { id: 'books', value: 2, label: 'parašytos knygos' },
 ]
 
@@ -24,7 +23,7 @@ export const community: readonly CommunityItem[] = [
     title: 'Mentorystė Idealogue, KTU ir Nord Security',
     period: 'nuolat',
     blurb:
-      'Trys programos vienu metu. 1:1 pokalbiai — mėgstamiausias mano profesinio laiko panaudojimas, o tai yra lygiai tas pats už savo komandos ribų.',
+      'Trys programos vienu metu, daugiausia 1:1 pokalbiai su žmonėmis už mano komandos ribų.',
     links: [],
   },
   {
@@ -32,15 +31,15 @@ export const community: readonly CommunityItem[] = [
     title: '„C# Inn“ įkūrėjas',
     period: '2018 — 2022',
     blurb:
-      'Sukūriau ir vedžiau Discord bendruomenę žmonėms, užstrigusiems ties programavimo klausimais. Ji peraugo 7000 narių.',
-    links: [{ label: 'Prisijunk prie Discord', href: 'https://discord.gg/rCMKcUU' }],
+      'Sukūriau ir vedžiau Discord bendruomenę žmonėms, užstrigusiems ties programavimo klausimais. Ji išaugo iki daugiau nei 7000 narių.',
+    links: [{ label: 'Prisijungti prie Discord', href: 'https://discord.gg/rCMKcUU' }],
   },
   {
     id: 'ktu-dojo',
     title: 'KTU Coding Dojo',
     period: '2023 — 2026',
     blurb:
-      'Programavimas poromis tarp studentų, dėstytojų ir dirbančių programuotojų — geros praktikos, o pastaruoju metu ir promptų inžinerija.',
+      'Programavimas poromis tarp studentų, dėstytojų ir dirbančių programuotojų: geros praktikos, o pastaruoju metu ir promptų inžinerija.',
     links: [],
   },
   {
@@ -48,7 +47,7 @@ export const community: readonly CommunityItem[] = [
     title: 'Nemokamos programavimo pamokos per Twitch ir YouTube',
     period: '2019 — 2021',
     blurb:
-      'Beveik 100 sesijų, dauguma gyvai: OOP, SOLID, švarus kodas, testavimas, C#, Web API. Viskas nemokamai ir viskas vis dar prieinama.',
+      'Daugiausia gyvos sesijos apie OOP, SOLID, švarų kodą, testavimą, C# ir Web API. Viskas nemokama ir vis dar prieinama.',
     links: [
       { label: 'v1 kursas', href: 'https://github.com/Almantask/CSharp-From-Zero-To-Hero' },
       {
@@ -67,7 +66,7 @@ export const community: readonly CommunityItem[] = [
     title: 'Programavimo interviu su žmonėmis, kurių verta klausytis',
     period: '2021',
     blurb:
-      'Aštuoni pokalbiai su tokiais vardais kaip Uncle Bob, Jon Skeet ir Mark Seemann — įrašyti ir paskelbti nemokamai.',
+      'Aštuoni pokalbiai, tarp jų su Uncle Bob, Jon Skeet ir Mark Seemann. Įrašyti ir paskelbti nemokamai.',
     links: [
       {
         label: 'Žiūrėti ciklą',
@@ -88,15 +87,15 @@ export const community: readonly CommunityItem[] = [
     title: '„Share Learn Grow“ sesijos',
     period: '2023 — 2025',
     blurb:
-      'Nuolatinis laikas OAG, kai komandos moko vienos kitas to, ką ką tik išsiaiškino, užuot kiekvienai atradus tai iš naujo.',
+      'Reguliarūs susitikimai OAG, kuriuose komandos mokė viena kitą to, ką neseniai išsiaiškino.',
     links: [],
   },
   {
     id: 'career-changers',
-    title: 'Karjeros keitėjų mokymas',
+    title: 'Karjerą keičiančių žmonių mokymas',
     period: '2019 — 2021',
     blurb:
-      'Software Development Academy ir Kaunas Coding School — žmonės, ateinantys į programavimą iš visai kitų sričių.',
+      'Software Development Academy ir Kaunas Coding School: žmonės, ateinantys į programavimą iš visai kitų sričių.',
     links: [],
   },
 ]
