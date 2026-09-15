@@ -18,6 +18,7 @@
     "e2e:install": "playwright install --with-deps chromium",
     "preview": "vite preview",
     "images": "node scripts/optimize-images.mjs",
+    "screenshots": "node scripts/fetch-project-screenshots.mjs",
     "budget": "node scripts/check-budget.mjs"
   },
   "dependencies": {

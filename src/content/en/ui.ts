@@ -33,6 +33,10 @@ export const ui: UiStrings = {
   projectsLede:
     'Mostly born from a need at my own table — a campaign that wanted a soundtrack, a course that wanted exercises, a question that wanted an answer.',
   openProject: 'Open',
+  projectGallery: (name) => `Screenshots of ${name}`,
+  previousScreenshot: 'Previous screenshot',
+  nextScreenshot: 'Next screenshot',
+  screenshotPosition: (current, total) => `${current} of ${total}`,
 
   speakingEyebrow: 'Speaking',
   speakingTitle: 'Five years of conference stages.',

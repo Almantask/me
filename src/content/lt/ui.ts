@@ -33,6 +33,10 @@ export const ui: UiStrings = {
   projectsLede:
     'Dažniausiai gimę iš poreikio prie savo paties stalo — kampanijos, kuriai prireikė garso takelio; kurso, kuriam prireikė užduočių; klausimo, kuriam prireikė atsakymo.',
   openProject: 'Atidaryti',
+  projectGallery: (name) => `${name} ekrano nuotraukos`,
+  previousScreenshot: 'Ankstesnė nuotrauka',
+  nextScreenshot: 'Kita nuotrauka',
+  screenshotPosition: (current, total) => `${current} iš ${total}`,
 
   speakingEyebrow: 'Pranešimai',
   speakingTitle: 'Penkeri metai konferencijų scenose.',

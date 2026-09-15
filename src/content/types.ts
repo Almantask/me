@@ -31,6 +31,12 @@ export interface Project {
   readonly badge?: string
 }
 
+/** One slide on a project-card carousel. `file` is the basename under `img/projects/<id>/`. */
+export interface ProjectScreenshot {
+  readonly file: string
+  readonly alt: string
+}
+
 export interface Talk {
   readonly id: string
   readonly year: number
@@ -147,6 +153,10 @@ export interface UiStrings {
   readonly projectsTitle: string
   readonly projectsLede: string
   readonly openProject: string
+  readonly projectGallery: (name: string) => string
+  readonly previousScreenshot: string
+  readonly nextScreenshot: string
+  readonly screenshotPosition: (current: number, total: number) => string
 
   readonly speakingEyebrow: string
   readonly speakingTitle: string
