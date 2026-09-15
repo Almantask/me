@@ -18,10 +18,10 @@ export function ProjectCard({ project }: Props) {
   const screenshots = screenshotsFor(project.id)
 
   return (
-    <li data-reveal className="group @container">
+    <li data-reveal className="group @container min-w-0">
       <article
         ref={ref}
-        className="card relative flex h-full flex-col overflow-hidden transition-colors group-hover:border-ember"
+        className="card relative flex h-full min-w-0 flex-col overflow-hidden transition-colors group-hover:border-ember"
       >
         {/* Ember sweep on hover. Decorative, so it never reaches the a11y tree. */}
         <span
@@ -41,7 +41,7 @@ export function ProjectCard({ project }: Props) {
           href={project.href}
           target="_blank"
           rel="noreferrer noopener"
-          className="relative flex flex-1 flex-col p-6"
+          className="relative flex flex-1 flex-col p-5 sm:p-6"
         >
           <div className="flex items-start justify-between gap-4">
             <h3 className="text-lg font-semibold @sm:text-xl">{project.name}</h3>

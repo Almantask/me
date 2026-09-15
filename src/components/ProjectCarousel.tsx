@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState, type FocusEvent, type KeyboardEvent, type PointerEvent } from 'react'
 import type { ProjectScreenshot } from '../content/types'
 import { useUi } from '../i18n/useContent'
-import { wrapIndex } from '../lib/carousel'
+import { swipeDirection, wrapIndex } from '../lib/carousel'
 import { useMotionEnvironment } from '../motion/useMotionEnvironment'
 
 const BASE = import.meta.env.BASE_URL
 const INTERVAL_MS = 4200
-const SWIPE_PX = 40
 
 interface Props {
   readonly projectId: string
@@ -16,13 +15,13 @@ interface Props {
 
 export function ProjectCarousel({ projectId, projectName, screenshots }: Props) {
   const ui = useUi()
-  const { reduced } = useMotionEnvironment()
+  const { reduced, finePointer } = useMotionEnvironment()
   const count = screenshots.length
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const [inView, setInView] = useState(false)
-  const rootRef = useRef<HTMLDivElement>(null)
-  const swipeRef = useRef<number | null>(null)
+  const rootRef = useRef<HTMLElement>(null)
+  const swipeRef = useRef<{ x: number; y: number } | null>(null)
 
   useEffect(() => {
     const node = rootRef.current
@@ -34,7 +33,9 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
     return () => observer.disconnect()
   }, [])
 
-  const canAutoplay = count > 1 && !reduced && !paused && inView
+  // Autoplay is a hover-era courtesy. On a phone it fights scrolling, and there is
+  // no hover to pause it — swipe and the 44px controls are the interaction.
+  const canAutoplay = count > 1 && !reduced && !paused && inView && finePointer
 
   useEffect(() => {
     if (!canAutoplay) return
@@ -46,18 +47,18 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
 
   const go = (delta: number) => setIndex((current) => wrapIndex(current, delta, count))
 
-  const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+  const onPointerDown = (event: PointerEvent<HTMLElement>) => {
     if (event.pointerType === 'mouse' && event.button !== 0) return
-    swipeRef.current = event.clientX
+    if (event.target instanceof Element && event.target.closest('button')) return
+    swipeRef.current = { x: event.clientX, y: event.clientY }
   }
 
-  const onPointerUp = (event: PointerEvent<HTMLDivElement>) => {
+  const onPointerUp = (event: PointerEvent<HTMLElement>) => {
     const start = swipeRef.current
     swipeRef.current = null
-    if (start === null || count < 2) return
-    const dx = event.clientX - start
-    if (Math.abs(dx) < SWIPE_PX) return
-    go(dx < 0 ? 1 : -1)
+    if (!start || count < 2) return
+    const step = swipeDirection(event.clientX - start.x, event.clientY - start.y)
+    if (step !== 0) go(step)
   }
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -70,7 +71,7 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
     }
   }
 
-  const onBlurCapture = (event: FocusEvent<HTMLDivElement>) => {
+  const onBlurCapture = (event: FocusEvent<HTMLElement>) => {
     if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) {
       setPaused(false)
     }
@@ -84,27 +85,29 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
       data-carousel={projectId}
       aria-roledescription="carousel"
       aria-label={ui.projectGallery(projectName)}
-      className="relative isolate aspect-[16/10] overflow-hidden bg-surface-2"
-      onPointerEnter={() => setPaused(true)}
+      className="relative isolate @container aspect-[16/10] min-w-0 w-full touch-pan-y overflow-hidden overscroll-x-contain bg-surface-2 select-none"
+      onPointerEnter={() => {
+        if (finePointer) setPaused(true)
+      }}
       onPointerLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={onBlurCapture}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerCancel={() => {
+        swipeRef.current = null
+      }}
     >
       <div
-        className="flex h-full touch-pan-y transition-transform duration-500"
+        className="flex h-full transition-transform duration-500"
         style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => {
-          swipeRef.current = null
-        }}
       >
         {screenshots.map((shot, slide) => {
           const nearby =
             slide === index || slide === wrapIndex(index, -1, count) || slide === wrapIndex(index, 1, count)
 
           return (
-            <div key={shot.file} className="h-full w-full shrink-0" aria-hidden={slide !== index}>
+            <div key={shot.file} className="h-full w-full min-w-0 shrink-0 grow-0 basis-full" aria-hidden={slide !== index}>
               {nearby ? (
                 <picture>
                   <source
@@ -116,10 +119,10 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
                     alt={slide === index ? `${projectName} — ${shot.alt}` : ''}
                     width={800}
                     height={500}
-                    loading={slide === 0 ? 'eager' : 'lazy'}
+                    loading="lazy"
                     decoding="async"
                     draggable={false}
-                    className="h-full w-full object-cover object-top"
+                    className="h-full w-full max-w-full object-cover object-top"
                   />
                 </picture>
               ) : null}
@@ -145,14 +148,17 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
             onKeyDown={onKeyDown}
           />
 
-          <div className="absolute inset-x-0 bottom-2 flex items-center justify-between gap-3 px-3">
+          <div className="absolute inset-x-0 bottom-2 flex items-end justify-between gap-3 px-3">
             <p
               data-carousel-position
-              className="rounded-full bg-black/80 px-2 py-0.5 text-[11px] font-medium tracking-wide text-white"
+              className="shrink-0 rounded-full bg-black/80 px-2.5 py-1 text-[11px] font-medium tracking-wide whitespace-nowrap text-white tabular-nums"
             >
               {position}
             </p>
-            <ol aria-hidden="true" className="flex flex-wrap items-center justify-end gap-1.5">
+            <ol
+              aria-hidden="true"
+              className="hidden max-w-[55%] flex-wrap items-center justify-end gap-1.5 @[20rem]:flex"
+            >
               {screenshots.map((shot, slide) => (
                 <li key={shot.file}>
                   <button
@@ -160,7 +166,7 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
                     tabIndex={-1}
                     aria-label={shot.alt}
                     onClick={() => setIndex(slide)}
-                    className={`block size-1.5 rounded-full transition-colors ${
+                    className={`block size-2 rounded-full transition-colors @[24rem]:size-1.5 ${
                       slide === index ? 'bg-ember' : 'bg-white/70'
                     }`}
                   />
@@ -191,7 +197,7 @@ function CarouselButton({
       aria-label={label}
       onClick={onClick}
       onKeyDown={onKeyDown}
-      className={`absolute top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-full border border-line bg-surface/90 text-ink shadow-sm transition-colors hover:border-ember hover:text-ember ${
+      className={`absolute top-1/2 z-[1] grid size-11 -translate-y-1/2 place-items-center rounded-full border border-line bg-surface/90 text-ink shadow-sm touch-manipulation transition-colors hover:border-ember hover:text-ember ${
         dir === 'left' ? 'left-2' : 'right-2'
       }`}
     >

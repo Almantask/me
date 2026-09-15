@@ -14,7 +14,7 @@ export function Projects() {
       title={ui.projectsTitle}
       lede={ui.projectsLede}
     >
-      <ul ref={scope} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <ul ref={scope} className="grid min-w-0 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
