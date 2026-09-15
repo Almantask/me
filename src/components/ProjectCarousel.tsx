@@ -132,24 +132,18 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
         <>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/45 to-transparent" />
 
-          <button
-            type="button"
-            aria-label={ui.previousScreenshot}
+          <CarouselButton
+            dir="left"
+            label={ui.previousScreenshot}
             onClick={() => go(-1)}
             onKeyDown={onKeyDown}
-            className="absolute left-2 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-full border border-line bg-surface/90 text-ink shadow-sm transition-colors hover:border-ember hover:text-ember"
-          >
-            <Chevron dir="left" />
-          </button>
-          <button
-            type="button"
-            aria-label={ui.nextScreenshot}
+          />
+          <CarouselButton
+            dir="right"
+            label={ui.nextScreenshot}
             onClick={() => go(1)}
             onKeyDown={onKeyDown}
-            className="absolute right-2 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-full border border-line bg-surface/90 text-ink shadow-sm transition-colors hover:border-ember hover:text-ember"
-          >
-            <Chevron dir="right" />
-          </button>
+          />
 
           <div className="absolute inset-x-0 bottom-2 flex items-center justify-between gap-3 px-3">
             <p
@@ -180,16 +174,36 @@ export function ProjectCarousel({ projectId, projectName, screenshots }: Props) 
   )
 }
 
-function Chevron({ dir }: { readonly dir: 'left' | 'right' }) {
+function CarouselButton({
+  dir,
+  label,
+  onClick,
+  onKeyDown,
+}: {
+  readonly dir: 'left' | 'right'
+  readonly label: string
+  readonly onClick: () => void
+  readonly onKeyDown: (event: KeyboardEvent) => void
+}) {
   return (
-    <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">
-      <path
-        d={dir === 'left' ? 'M10 3 5 8l5 5' : 'M6 3l5 5-5 5'}
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <button
+      type="button"
+      aria-label={label}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      className={`absolute top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-full border border-line bg-surface/90 text-ink shadow-sm transition-colors hover:border-ember hover:text-ember ${
+        dir === 'left' ? 'left-2' : 'right-2'
+      }`}
+    >
+      <svg viewBox="0 0 16 16" className="size-3.5" aria-hidden="true" fill="none">
+        <path
+          d={dir === 'left' ? 'M10 3 5 8l5 5' : 'M6 3l5 5-5 5'}
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
   )
 }

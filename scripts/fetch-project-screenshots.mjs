@@ -19,6 +19,15 @@ const JPEG_QUALITY = 72
  * `liveShots` is a fallback when the README has no product screenshots — we capture
  * the public GitHub Pages (or hosted) app instead so every card still has a slide.
  */
+function pages(origin, shots) {
+  return shots.map(([file, path, alt, action]) => ({
+    file,
+    alt,
+    url: `${origin}${path}`,
+    ...(action ? { action } : {}),
+  }))
+}
+
 const PROJECTS = [
   { id: 'sunderplace', repo: 'Almantask/sounderplace', branch: 'main' },
   { id: 'sunder', repo: 'Almantask/sunder', branch: 'main' },
@@ -27,23 +36,11 @@ const PROJECTS = [
     id: 'tokenizer',
     repo: 'Almantask/dnd-ready-to-print-tokenizer',
     branch: 'main',
-    liveShots: [
-      {
-        file: 'forge',
-        alt: 'Forge screen: tint a circular D&D token from any portrait',
-        url: 'https://almantask.github.io/dnd-ready-to-print-tokenizer/',
-      },
-      {
-        file: 'armory',
-        alt: 'Armory of saved tokens ready to send to print',
-        url: 'https://almantask.github.io/dnd-ready-to-print-tokenizer/#/tokens',
-      },
-      {
-        file: 'print-muster',
-        alt: 'Print Muster laying tokens onto A4 sheets at one inch',
-        url: 'https://almantask.github.io/dnd-ready-to-print-tokenizer/#/print',
-      },
-    ],
+    liveShots: pages('https://almantask.github.io/dnd-ready-to-print-tokenizer', [
+      ['forge', '/', 'Forge screen: tint a circular D&D token from any portrait'],
+      ['armory', '/#/tokens', 'Armory of saved tokens ready to send to print'],
+      ['print-muster', '/#/print', 'Print Muster laying tokens onto A4 sheets at one inch'],
+    ]),
   },
   { id: 'map-to-poster', repo: 'Almantask/image-splitter-for-printing', branch: 'main' },
   { id: 'bestiary', repo: 'Almantask/dnd-monster-generator', branch: 'main' },
@@ -51,105 +48,45 @@ const PROJECTS = [
     id: 'geoclash',
     repo: 'Almantask/location-finder-game-hot',
     branch: 'main',
-    liveShots: [
-      {
-        file: 'title',
-        alt: 'Title screen with Start Mission and high scores',
-        url: 'https://almantask.github.io/location-finder-game-hot/',
-      },
-      {
-        file: 'mission',
-        alt: 'In-mission blind map with the thermal cursor',
-        url: 'https://almantask.github.io/location-finder-game-hot/',
-        action: 'start',
-      },
-      {
-        file: 'scores',
-        alt: 'High scores table',
-        url: 'https://almantask.github.io/location-finder-game-hot/',
-        action: 'scores',
-      },
-    ],
+    liveShots: pages('https://almantask.github.io/location-finder-game-hot/', [
+      ['title', '', 'Title screen with Start Mission and high scores'],
+      ['mission', '', 'In-mission blind map with the thermal cursor', 'start'],
+      ['scores', '', 'High scores table', 'scores'],
+    ]),
   },
   { id: 'arcanum-audio', repo: 'Almantask/rpg-audio-mixer-web', branch: 'main' },
   {
     id: 'baltic-gods',
     repo: 'Almantask/baltic-gods',
     branch: 'main',
-    liveShots: [
-      {
-        file: 'home',
-        alt: 'Home: the ancient paths and featured deities',
-        url: 'https://almantask.github.io/baltic-gods/',
-      },
-      {
-        file: 'pantheon',
-        alt: 'Pantheon index of deities',
-        url: 'https://almantask.github.io/baltic-gods/pantheon',
-      },
-      {
-        file: 'map',
-        alt: 'Map of sacred and historical places',
-        url: 'https://almantask.github.io/baltic-gods/map',
-      },
-      {
-        file: 'perkunas',
-        alt: 'Perkūnas entry on the pantheon',
-        url: 'https://almantask.github.io/baltic-gods/pantheon/perkunas',
-      },
-    ],
+    liveShots: pages('https://almantask.github.io/baltic-gods', [
+      ['home', '/', 'Home: the ancient paths and featured deities'],
+      ['pantheon', '/pantheon', 'Pantheon index of deities'],
+      ['map', '/map', 'Map of sacred and historical places'],
+      ['perkunas', '/pantheon/perkunas', 'Perkūnas entry on the pantheon'],
+    ]),
   },
   {
     id: 'dnd-zemaiciai',
     repo: 'Almantask/dnd-zemaiciai-web',
     branch: 'main',
-    liveShots: [
-      {
-        file: 'home',
-        alt: 'Campaign wiki home',
-        url: 'https://almantask.github.io/dnd-zemaiciai-web/',
-      },
-      {
-        file: 'session',
-        alt: 'Session log from the campaign wiki',
-        url: 'https://almantask.github.io/dnd-zemaiciai-web/docs/sessions/sesija1',
-      },
-      {
-        file: 'party',
-        alt: 'Party member sheet',
-        url: 'https://almantask.github.io/dnd-zemaiciai-web/docs/group/Grimantas-StoneFist',
-      },
-      {
-        file: 'location',
-        alt: 'Location page on the campaign wiki',
-        url: 'https://almantask.github.io/dnd-zemaiciai-web/docs/locations/Klaip%C4%97da',
-      },
-    ],
+    liveShots: pages('https://almantask.github.io/dnd-zemaiciai-web', [
+      ['home', '/', 'Campaign wiki home'],
+      ['session', '/docs/sessions/sesija1', 'Session log from the campaign wiki'],
+      ['party', '/docs/group/Grimantas-StoneFist', 'Party member sheet'],
+      ['location', '/docs/locations/Klaip%C4%97da', 'Location page on the campaign wiki'],
+    ]),
   },
   { id: 'csharp-zero-to-hero', repo: 'Almantask/CSharp-From-Zero-To-Hero', branch: 'master' },
   {
     id: 'philosophers-timeline',
     repo: 'Almantask/philosophers-timeline',
     branch: 'main',
-    liveShots: [
-      {
-        file: 'timeline',
-        alt: 'Timeline starting at Zarathustra',
-        url: 'https://almantask.github.io/philosophers-timeline/',
-      },
-      {
-        file: 'search',
-        alt: 'Timeline with a search query entered',
-        url: 'https://almantask.github.io/philosophers-timeline/',
-        action: 'search',
-      },
-      {
-        file: 'later',
-        alt: 'Timeline scrolled into later centuries',
-        url: 'https://almantask.github.io/philosophers-timeline/',
-        action: 'scroll',
-      },
-    ],
+    liveShots: pages('https://almantask.github.io/philosophers-timeline/', [
+      ['timeline', '', 'Timeline starting at Zarathustra'],
+      ['search', '', 'Timeline with a search query entered', 'search'],
+      ['later', '', 'Timeline scrolled into later centuries', 'scroll'],
+    ]),
   },
   { id: 'japanese-crossword', repo: 'Almantask/JapaneseCrossword', branch: 'master' },
 ]
