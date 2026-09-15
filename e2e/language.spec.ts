@@ -7,7 +7,7 @@ test.describe('language', () => {
     await settle(page)
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-    await expect(page.getByRole('heading', { name: /growing people over growing codebases/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /why i went into management/i })).toBeVisible()
   })
 
   test('opens in Lithuanian when the URL asks for it', async ({ page }) => {
@@ -15,7 +15,7 @@ test.describe('language', () => {
     await settle(page)
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'lt')
-    await expect(page.getByRole('heading', { name: /auginti žmones/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /pasirinkau vadovavimą/i })).toBeVisible()
     await expect(page).toHaveTitle(/inžinerijos vadovas/i)
   })
 

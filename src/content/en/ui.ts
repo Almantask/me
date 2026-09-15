@@ -12,7 +12,7 @@ export const ui: UiStrings = {
   sectionsNavLabel: 'Sections',
 
   aboutEyebrow: 'About',
-  aboutTitle: 'I chose growing people over growing codebases.',
+  aboutTitle: 'Why I went into management.',
   educationHeading: 'Education',
   languagesHeading: 'Languages',
 
@@ -20,18 +20,16 @@ export const ui: UiStrings = {
   valuesTitle: 'Three things I will not trade away.',
 
   experienceEyebrow: 'Experience',
-  experienceTitle: 'Ten years of building software, and of building the people who build it.',
-  experienceLede:
-    'Most recent roles first. The earlier ones are still here — they are just not what you came for.',
+  experienceTitle: 'Ten years in software, the last few leading teams.',
+  experienceLede: 'Most recent roles first. Earlier roles are one click away.',
   showEarlierRoles: (count) => `Show ${count} earlier roles`,
   hideEarlierRoles: 'Hide earlier roles',
   present: 'present',
   techLabel: (org) => `Technologies used at ${org}`,
 
   projectsEyebrow: 'Projects',
-  projectsTitle: 'Things I build when nobody asked me to.',
-  projectsLede:
-    'Mostly born from a need at my own table — a campaign that wanted a soundtrack, a course that wanted exercises, a question that wanted an answer.',
+  projectsTitle: 'Things I build in my own time.',
+  projectsLede: 'Most of them started because my D&D table or my students needed something.',
   openProject: 'Open',
   projectGallery: (name) => `Screenshots of ${name}`,
   previousScreenshot: 'Previous screenshot',
@@ -40,16 +38,15 @@ export const ui: UiStrings = {
 
   speakingEyebrow: 'Speaking',
   speakingTitle: 'Five years of conference stages.',
-  speakingLede:
-    'BDD, testing, and lately what all of it means once AI is writing half the code.',
+  speakingLede: 'BDD and testing, and lately how both change when you work with AI.',
   watchTalk: 'Watch',
   watchTalkContext: 'watch the recording on YouTube',
 
   communityEyebrow: 'Community & mentorship',
-  communityTitle: 'I will be the person that I needed so much in my career.',
+  communityTitle: 'Why I mentor, and what came of it.',
 
   writingEyebrow: 'Writing & recognition',
-  writingTitle: 'Two books, and the community that made them worth writing.',
+  writingTitle: 'Two books, and some recognition along the way.',
   awardsHeading: 'Awards',
   findOnAmazon: 'Find it on Amazon',
 
@@ -77,7 +74,7 @@ export const ui: UiStrings = {
   statusHandedOff: 'Your mail app should be opening with the message ready to send.',
   mailSubject: (name) => `Hello from ${name}`,
 
-  footerNote: 'Built with React, GSAP and rather too much enthusiasm.',
+  footerNote: 'Built with React, GSAP and a lot of enthusiasm.',
   metaTitle: 'Almantas Karpavičius — Engineering Manager, author, mentor',
   metaDescription:
     'Engineering Manager at Nord Security. 3× Microsoft MVP, author of two books, conference speaker, and mentor at Idealogue, KTU and Nord Security.',

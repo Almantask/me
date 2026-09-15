@@ -8,7 +8,7 @@ export const books: readonly Book[] = [
     year: 2024,
     credit: 'Author',
     blurb:
-      'How to keep applying classical best practices — design, review, testing — while genuinely making use of AI, rather than pretending either one away.',
+      'How to keep applying classical best practices (design, review, testing) while making real use of AI.',
     href: 'https://www.amazon.com/Software-Craftsmanship-Using-Practical-reviewing/dp/9365892422',
   },
   {

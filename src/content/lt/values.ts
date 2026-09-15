@@ -9,7 +9,7 @@ export const values: readonly Value[] = [
   },
   {
     id: 'vulnerability',
-    name: 'Pažeidžiamumas',
+    name: 'Atvirumas',
     blurb:
       'Garsiai pasakau „nežinau“ ir pasakau, kai suklydau. Komanda pripažins tiek, kiek pirmas pripažįsta jos vadovas.',
   },

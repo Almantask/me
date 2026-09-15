@@ -3,12 +3,11 @@ import type { CommunityItem, Stat } from '../types'
 /** The three beats the pinned set-piece scrubs through. Order is the argument. */
 export const mentorshipBeats: readonly string[] = [
   'In my whole career, I had a mentor for only a brief time.',
-  'I benefited from it enormously — more than from anything else in those years.',
+  'I benefited from it enormously.',
   'So I decided I would be that person for someone else.',
 ]
 
-export const mentorshipLede =
-  'Why mentorship? Because the version of me that needed one mostly did not have one. Everything below started from that.'
+export const mentorshipLede = 'Everything in this section comes from one decision.'
 
 export const stats: readonly Stat[] = [
   { id: 'members', value: 7000, suffix: '+', label: 'C# Inn community members' },
@@ -24,8 +23,7 @@ export const community: readonly CommunityItem[] = [
     id: 'mentorship',
     title: 'Mentoring at Idealogue, KTU and Nord Security',
     period: 'ongoing',
-    blurb:
-      'Three programmes in parallel. 1:1s are my favourite spend of professional time, and this is the same thing outside my own team.',
+    blurb: 'Three programmes at once, mostly 1:1s with people outside my own team.',
     links: [],
   },
   {
@@ -41,7 +39,7 @@ export const community: readonly CommunityItem[] = [
     title: 'KTU Coding Dojo',
     period: '2023 — 2026',
     blurb:
-      'Pair programming between students, lecturers and working developers — best practices, and lately prompt engineering.',
+      'Pair programming between students, lecturers and working developers on best practices, and lately prompt engineering.',
     links: [],
   },
   {
@@ -49,7 +47,7 @@ export const community: readonly CommunityItem[] = [
     title: 'Free programming lessons on Twitch and YouTube',
     period: '2019 — 2021',
     blurb:
-      'Close to 100 sessions, most of them live: OOP, SOLID, clean code, testing, C#, Web API. All of it free, all of it still up.',
+      'Mostly live sessions on OOP, SOLID, clean code, testing, C# and Web API. All free, and all still online.',
     links: [
       { label: 'v1 course', href: 'https://github.com/Almantask/CSharp-From-Zero-To-Hero' },
       {
@@ -68,7 +66,7 @@ export const community: readonly CommunityItem[] = [
     title: 'Programming interviews with people worth listening to',
     period: '2021',
     blurb:
-      'Eight conversations with the likes of Uncle Bob, Jon Skeet and Mark Seemann — recorded and published free.',
+      'Eight conversations, including Uncle Bob, Jon Skeet and Mark Seemann. Recorded and published for free.',
     links: [
       {
         label: 'Watch the series',
@@ -88,8 +86,7 @@ export const community: readonly CommunityItem[] = [
     id: 'share-learn-grow',
     title: '"Share Learn Grow" sessions',
     period: '2023 — 2025',
-    blurb:
-      'A standing slot at OAG for teams to teach each other what they had just figured out, instead of each rediscovering it.',
+    blurb: 'A regular slot at OAG where teams taught each other what they had just figured out.',
     links: [],
   },
   {
@@ -97,7 +94,7 @@ export const community: readonly CommunityItem[] = [
     title: 'Teaching career changers',
     period: '2019 — 2021',
     blurb:
-      'At Software Development Academy and Kaunas Coding School — people moving into programming from somewhere else entirely.',
+      'At Software Development Academy and Kaunas Coding School, with people moving into programming from completely different fields.',
     links: [],
   },
 ]
