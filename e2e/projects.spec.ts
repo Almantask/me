@@ -7,7 +7,7 @@ test.describe('project screenshot carousels', () => {
     await settle(page)
     await scrollToSection(page, 'projects')
 
-    const cards = page.locator('#projects li')
+    const cards = page.locator('#projects ul.grid > li')
     const carousels = page.locator('#projects [data-carousel]')
     await expect(cards).toHaveCount(13)
     await expect(carousels).toHaveCount(13)
