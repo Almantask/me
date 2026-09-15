@@ -1,0 +1,5 @@
+/** Wrap a slide index so the carousel can step off either end. */
+export function wrapIndex(current: number, delta: number, length: number): number {
+  if (length <= 0) return 0
+  return ((current + delta) % length + length) % length
+}

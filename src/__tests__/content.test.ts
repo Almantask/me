@@ -1,7 +1,12 @@
+import { existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { bundles } from '../content'
+import { projectScreenshots, screenshotsFor } from '../content/projectScreenshots'
 import { LANGUAGES, type ContentBundle, type Language } from '../content/types'
 import { monthKey } from '../lib/dates'
+
+const screenshotRoot = resolve(import.meta.dirname, '../../public/img/projects')
 
 const entries = Object.entries(bundles) as [Language, ContentBundle][]
 
@@ -139,6 +144,32 @@ describe('language parity', () => {
   it('counts the same number of about paragraphs and mentorship beats', () => {
     expect(lt.about.length).toBe(en.about.length)
     expect(lt.mentorshipBeats.length).toBe(en.mentorshipBeats.length)
+  })
+})
+
+describe('project screenshots', () => {
+  it('covers every project card', () => {
+    for (const project of bundles.en.projects) {
+      expect(screenshotsFor(project.id).length, project.id).toBeGreaterThan(0)
+    }
+  })
+
+  it('only references ids that exist on the project list', () => {
+    const ids = new Set(bundles.en.projects.map((project) => project.id))
+    for (const id of Object.keys(projectScreenshots)) {
+      expect(ids.has(id), id).toBe(true)
+    }
+  })
+
+  it('ships a jpeg and a webp for every slide', () => {
+    for (const [id, shots] of Object.entries(projectScreenshots)) {
+      for (const shot of shots) {
+        const base = resolve(screenshotRoot, id, shot.file)
+        expect(existsSync(`${base}.jpg`), `${id}/${shot.file}.jpg`).toBe(true)
+        expect(existsSync(`${base}.webp`), `${id}/${shot.file}.webp`).toBe(true)
+        expect(shot.alt, `${id}/${shot.file} alt`).toBeTruthy()
+      }
+    }
   })
 })
 
