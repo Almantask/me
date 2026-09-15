@@ -6,7 +6,7 @@ export const profile: Profile = {
   org: 'Nord Security',
   tagline: 'Man patinka programuoti. Ugdyti žmones patinka dar labiau.',
   intro:
-    'Darbe vadovauju komandai, o be jo rašau, skaitau pranešimus konferencijose, mokau ir esu mentorius.',
+    'Darbe vadovauju komandai. Laisvu laiku rašau knygas, skaitau pranešimus konferencijose, mokau ir esu mentorius.',
   location: 'Kaunas, Lietuva',
   email: 'almantusk@gmail.com',
 }
