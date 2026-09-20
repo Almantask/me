@@ -143,7 +143,6 @@ export interface UiStrings {
 
   readonly experienceEyebrow: string
   readonly experienceTitle: string
-  readonly experienceLede: string
   readonly showEarlierRoles: (count: number) => string
   readonly hideEarlierRoles: string
   readonly present: string

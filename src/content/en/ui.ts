@@ -21,7 +21,6 @@ export const ui: UiStrings = {
 
   experienceEyebrow: 'Experience',
   experienceTitle: 'Ten years in software, the last few leading teams.',
-  experienceLede: 'Most recent roles first. Earlier roles are one click away.',
   showEarlierRoles: (count) => `Show ${count} earlier roles`,
   hideEarlierRoles: 'Hide earlier roles',
   present: 'present',
@@ -56,7 +55,7 @@ export const ui: UiStrings = {
   contactEyebrow: 'Contact',
   contactTitle: 'Say hello.',
   contactLede:
-    'Mentoring, speaking, a question about a talk, or just a good argument about testing — all welcome.',
+    'Mentoring, a question about a talk, or just a good discussion.',
   directHeading: 'Direct',
   elsewhereHeading: 'Elsewhere',
   formName: 'Your name',

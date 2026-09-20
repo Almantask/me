@@ -21,7 +21,6 @@ export const ui: UiStrings = {
 
   experienceEyebrow: 'Patirtis',
   experienceTitle: 'Dešimt metų programinėje įrangoje, pastaruosius kelerius vadovaujant komandoms.',
-  experienceLede: 'Naujausios pareigos pirmiausia. Ankstesnes rasite paspaudę žemiau.',
   showEarlierRoles: (count) => `Rodyti ankstesnes pareigas (${count})`,
   hideEarlierRoles: 'Slėpti ankstesnes pareigas',
   present: 'dabar',
@@ -57,7 +56,7 @@ export const ui: UiStrings = {
   contactEyebrow: 'Kontaktai',
   contactTitle: 'Parašykite.',
   contactLede:
-    'Mentorystė, pranešimai, klausimas apie kurį nors pranešimą ar tiesiog geras ginčas apie testavimą — viskas tinka.',
+    'Mentorystė, klausimas apie kurį nors pranešimą ar tiesiog gera diskusija.',
   directHeading: 'Tiesiogiai',
   elsewhereHeading: 'Kitur',
   formName: 'Jūsų vardas',

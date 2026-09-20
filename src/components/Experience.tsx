@@ -85,7 +85,6 @@ export function Experience() {
       id="experience"
       eyebrow={ui.experienceEyebrow}
       title={ui.experienceTitle}
-      lede={ui.experienceLede}
     >
       <div ref={scope} className="relative">
         {/* Unlit track first, then the ember spine that draws over it. */}

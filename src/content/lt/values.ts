@@ -5,18 +5,17 @@ export const values: readonly Value[] = [
     id: 'growth',
     name: 'Nuolatinis augimas',
     blurb:
-      'Kiekvienas 1:1, kiekviena peržiūra, kiekvienas pranešimas grįžta prie to paties klausimo: ką kitą savaitę galėtum padaryti geriau? To paties klausiu ir savęs.',
+      'Man svarbu nuolatos daryti tai, kas mane augina. Tai mano gyvenime pasireiškia šiais dalykais: projektų darymu, mentoriavimu, reflektavimu (dienoraščiu), kalbėjimu konferencijose, audio knygų klausymu, skaitymu...',
   },
   {
     id: 'vulnerability',
     name: 'Atvirumas',
-    blurb:
-      'Garsiai pasakau „nežinau“ ir pasakau, kai suklydau. Komanda pripažins tiek, kiek pirmas pripažįsta jos vadovas.',
+    blurb: 'Garsiai pasakau „nežinau“ ir pasakau, kai suklydau.',
   },
   {
     id: 'directness',
     name: 'Tiesumas',
     blurb:
-      'Geranoriškai, bet aiškiai. Pasakyti sunkų dalyką anksti kainuoja gerokai mažiau, nei palikti visus spėlioti, ką iš tikrųjų turėjau omenyje.',
+      'Lengva ar ne, stengiuosi visuomet suteikti grįžtamąjį ryšį žmonėms, su kuriais dirbu. Stengiuosi kelti aiškius lūkesčius ir to paties reikalauju iš savo komandos: kad keltų juos kitiems, įskaitant ir mane.',
   },
 ]

@@ -20,8 +20,7 @@ export const socials: readonly Link[] = [
 export const about: readonly string[] = [
   'Vienu karjeros momentu teko apsispręsti: techninis kelias ar vadovavimas. Programuoti man patinka, bet padėti žmonėms augti man svarbiau. Labiausiai darbe mėgstu 1:1 pokalbius.',
   'Per karjerą mentorių turėjau vos trumpą laiką, bet tai man labai padėjo. Todėl nusprendžiau būti tuo žmogumi kitiems. Dėl to surengiau du intensyvius C# kursus, trejus metus vedžiau Coding Dojo KTU, parašiau dvi knygas, pravedžiau 100+ programavimo pamokų ir įkūriau „C# Inn“ bendruomenę. Man tikrai patinka dalytis tuo, ką moku.',
-  'Pastaruosius trejus metus kuriu su dirbtiniu intelektu (programinę įrangą, agentus, muziką) ir aiškinuosi, ar klasikinės inžinerijos praktikos dar veikia, kai pusę kodo parašo modelis.',
-  'Esu idealistas. Tikiu, kad pasaulis būtų gerokai geresnis, jei kiekvienas prisidėtų prie pokalbio, o ne gintų savo nuomonę. Noriu paskatinti kitus padėti už „ačiū“: dėl bendro augimo ir kad naktį ramiai miegotum.',
+  'Pastaruosius trejus metus kuriu su dirbtiniu intelektu (programinę įrangą, agentus, muziką) ir aiškinuosi, kaip persipina klasikinės inžinerijos praktikos bei DI.',
 ]
 
 export const quote: Quote = {

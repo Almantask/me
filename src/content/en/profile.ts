@@ -22,8 +22,7 @@ export const socials: readonly Link[] = [
 export const about: readonly string[] = [
   'At some point in my career I had to decide: the technical route or the management route. I like coding, but helping people grow matters more to me. 1:1s are my favourite spend of professional time.',
   'In my career I had a mentor for only a brief time, and it helped me a lot. So I decided to be that person for others. That is why I organised two C# bootcamps, ran a Coding Dojo at KTU for three years, wrote two books, taught 100+ programming lessons and started the C# Inn community. I really like sharing what I know.',
-  'For the last three years I have been building things with AI (software, agents, music) and working out how classical engineering practice holds up when a model writes half the code.',
-  'I am an idealist. I believe the world would be a lot better if people contributed to a conversation instead of defending their opinion. I want to encourage others to help for a "thank you", for mutual growth and for sleeping well at night.',
+  'For the last three years I have been building things with AI (software, agents, music) and exploring how classical engineering practices and AI intertwine.',
 ]
 
 export const quote = {
