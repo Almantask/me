@@ -11,6 +11,15 @@ export const projects: readonly Project[] = [
     href: 'https://almantask.github.io/Degalai-web/',
   },
   {
+    id: 'thunder-play',
+    name: 'Thunder Play',
+    years: '2026 — dabar',
+    blurb:
+      'Android grotuvas muzikos bibliotekai, laikomai Google Drive. Perskaito, iš kokios užklausos kūrinys sugeneruotas, parodo, kurios užklausos pelno daugiausia žvaigždučių, o grojaraštį atiduoda nuoroda, grojančia bet kurioje naršyklėje.',
+    tech: ['Kotlin', 'Compose', 'Media3'],
+    href: 'https://github.com/Almantask/thunder-play',
+  },
+  {
     id: 'sunderplace',
     name: 'Sunderplace',
     years: '2026 — dabar',

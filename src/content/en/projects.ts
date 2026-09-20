@@ -12,6 +12,15 @@ export const projects: readonly Project[] = [
     href: 'https://almantask.github.io/Degalai-web/',
   },
   {
+    id: 'thunder-play',
+    name: 'Thunder Play',
+    years: '2026 — now',
+    blurb:
+      "An Android player for a music library kept in Google Drive. It reads each track's generator prompt, says which prompts actually earn stars, and shares a playlist as a link that plays in any browser.",
+    tech: ['Kotlin', 'Compose', 'Media3'],
+    href: 'https://github.com/Almantask/thunder-play',
+  },
+  {
     id: 'sunderplace',
     name: 'Sunderplace',
     years: '2026 — now',

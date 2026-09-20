@@ -12,6 +12,11 @@ export const projectScreenshots: Readonly<Record<string, readonly ProjectScreens
     { file: 'history', alt: 'Provider average prices by date and time' },
     { file: 'mobile', alt: 'Mobile map with station list sheet' },
   ],
+  'thunder-play': [
+    { file: 'sheet-1', alt: 'Library: combinable filters, star ratings, downloads and the mini player; Now Playing: seek, shuffle, repeat, star rating and generator metadata; A/B judging: two takes side by side, swipe or tap to keep one or call a tie' },
+    { file: 'sheet-2', alt: 'History: most-played tracks and recent listening over 7 days, 30 days or all time; Prompt insights: which prompt words earn the highest and lowest star ratings; Playlists: local lists and a live 7-day share link' },
+    { file: 'sheet-3', alt: 'Settings: Drive refresh, crossfade length and A/B testing; Public web player for a shared playlist, no app required' },
+  ],
   sunderplace: [
     { file: 'home', alt: 'Home' },
     { file: 'catalog', alt: 'Catalog' },

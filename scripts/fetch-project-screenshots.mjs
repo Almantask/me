@@ -11,6 +11,10 @@ const outDir = resolve(root, 'public/img/projects')
 const catalogPath = resolve(root, 'src/content/projectScreenshots.ts')
 
 const WIDTH = 800
+// A sheet fills the carousel frame, which is aspect-[16/10] on a --surface-2 backdrop.
+// The backdrop is the dark theme's surface-2; a baked-in colour cannot follow the theme,
+// and these screens are dark themselves, so it blends there and reads as a band in light.
+const SHEET = { width: 800, height: 500, pad: 24, gap: 32, bg: { r: 34, g: 30, b: 29 } }
 const WEBP_QUALITY = 64
 const JPEG_QUALITY = 72
 
@@ -18,6 +22,7 @@ const JPEG_QUALITY = 72
  * Project cards on the site, mapped to the GitHub repo their README lives in.
  * `liveShots` is a fallback when the README has no product screenshots — we capture
  * the public GitHub Pages (or hosted) app instead so every card still has a slide.
+ * `sheet` lays that many screenshots onto one slide, for phone shots too tall to crop.
  */
 function pages(origin, shots) {
   return shots.map(([file, path, alt, action]) => ({
@@ -30,6 +35,7 @@ function pages(origin, shots) {
 
 const PROJECTS = [
   { id: 'degalai', repo: 'Almantask/Degalai-web', branch: 'main' },
+  { id: 'thunder-play', repo: 'Almantask/thunder-play', branch: 'main', sheet: 3 },
   { id: 'sunderplace', repo: 'Almantask/sounderplace', branch: 'main' },
   { id: 'sunder', repo: 'Almantask/sunder', branch: 'main' },
   { id: 'thunder-fx', repo: 'Almantask/thunder-fx', branch: 'main' },
@@ -182,6 +188,37 @@ async function writeVariants(buffer, destBase) {
   await image.clone().jpeg({ quality: JPEG_QUALITY, mozjpeg: true }).toFile(`${destBase}.jpg`)
 }
 
+/**
+ * Lays several portrait screenshots side by side on one landscape slide.
+ * A phone screenshot is far taller than the carousel frame, so on its own it would
+ * crop to a top strip; grouped like this it fills the frame the way the README does.
+ */
+async function composeSheet(buffers, columns) {
+  const room = SHEET.width - SHEET.pad * 2 - (columns - 1) * SHEET.gap
+  const first = await sharp(buffers[0]).metadata()
+  const height = SHEET.height - SHEET.pad * 2
+  const width = Math.min(Math.round(height * (first.width / first.height)), Math.floor(room / columns))
+
+  const shots = await Promise.all(
+    buffers.map((buffer) => sharp(buffer).resize({ width, fit: 'inside' }).png().toBuffer()),
+  )
+  const span = shots.length * width + (shots.length - 1) * SHEET.gap
+  const left = Math.round((SHEET.width - span) / 2)
+
+  return sharp({
+    create: { width: SHEET.width, height: SHEET.height, channels: 3, background: SHEET.bg },
+  })
+    .composite(
+      shots.map((input, index) => ({
+        input,
+        left: left + index * (width + SHEET.gap),
+        top: SHEET.pad,
+      })),
+    )
+    .png()
+    .toBuffer()
+}
+
 async function captureLiveShots(liveShots, destDir) {
   const { chromium } = await import('@playwright/test')
   const browser = await chromium.launch()
@@ -285,23 +322,13 @@ async function existingBlocks() {
   }
 }
 
-/** Shots for one project: README images first, a live capture of the app as fallback. */
-async function fetchShots(project) {
-  const dir = join(outDir, project.id)
-  await mkdir(dir, { recursive: true })
-
-  let markdown = ''
-  try {
-    markdown = await readmeMarkdown(project.repo)
-  } catch (error) {
-    console.warn(`README skip ${project.repo}:`, error)
-  }
-
+/** One slide per README image, named after its file. */
+async function writeSingles(remote, project, dir) {
   /** @type {{ file: string, alt: string }[]} */
   const shots = []
   const usedSlugs = new Set()
 
-  for (const image of parseReadmeImages(markdown)) {
+  for (const image of remote) {
     let slug = slugFromPath(image.src)
     if (usedSlugs.has(slug)) slug = `${slug}-${usedSlugs.size}`
     usedSlugs.add(slug)
@@ -315,6 +342,58 @@ async function fetchShots(project) {
       console.warn(`${project.id}: failed ${url}`, error)
     }
   }
+
+  return shots
+}
+
+/** One slide per `sheet` README images, keeping the README's own grouping. */
+async function writeSheets(remote, project, dir) {
+  /** @type {{ file: string, alt: string }[]} */
+  const shots = []
+
+  for (let start = 0; start < remote.length; start += project.sheet) {
+    const group = remote.slice(start, start + project.sheet)
+    const buffers = []
+
+    for (const image of group) {
+      const url = resolveRawUrl(image.src, project.repo, project.branch)
+      try {
+        buffers.push(await download(url))
+      } catch (error) {
+        console.warn(`${project.id}: failed ${url}`, error)
+      }
+    }
+    if (buffers.length === 0) continue
+
+    const file = `sheet-${shots.length + 1}`
+    await writeVariants(await composeSheet(buffers, project.sheet), join(dir, file))
+    const alt = group
+      .map((image) => image.alt)
+      .filter(Boolean)
+      .join('; ')
+    shots.push({ file, alt: alt || `${project.id} screens` })
+    console.log(`${project.id}: ${file} (${buffers.length} screens)`)
+  }
+
+  return shots
+}
+
+/** Shots for one project: README images first, a live capture of the app as fallback. */
+async function fetchShots(project) {
+  const dir = join(outDir, project.id)
+  await mkdir(dir, { recursive: true })
+
+  let markdown = ''
+  try {
+    markdown = await readmeMarkdown(project.repo)
+  } catch (error) {
+    console.warn(`README skip ${project.repo}:`, error)
+  }
+
+  const remote = parseReadmeImages(markdown)
+  const shots = project.sheet
+    ? await writeSheets(remote, project, dir)
+    : await writeSingles(remote, project, dir)
 
   if (shots.length === 0 && project.liveShots?.length) {
     try {
