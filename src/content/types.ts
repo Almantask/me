@@ -196,6 +196,8 @@ export interface UiStrings {
 
   readonly footerNote: string
   readonly metaTitle: string
+  /** Shown as the heading when a link is shared, so it leads with the hook, not the CV. */
+  readonly ogDescription: string
   readonly metaDescription: string
 }
 

@@ -10,7 +10,7 @@ test.describe('the page', () => {
       await expect(page.locator(`#${id}`)).toBeAttached()
     }
 
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Almantas Karpavičius')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Engineering Manager')
     await expect(page).toHaveTitle(/Almantas Karpavičius/)
   })
 

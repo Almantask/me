@@ -77,4 +77,6 @@ export const ui: UiStrings = {
   metaTitle: 'Almantas Karpavičius — Engineering Manager, author, mentor',
   metaDescription:
     'Engineering Manager at Nord Security. 3× Microsoft MVP, author of two books, conference speaker, and mentor at Idealogue, KTU and Nord Security.',
+  ogDescription:
+    'I like coding. I like growing people a lot more. Engineering Manager at Nord Security, 3× Microsoft MVP, author of two books.',
 }

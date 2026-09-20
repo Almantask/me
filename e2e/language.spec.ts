@@ -49,7 +49,9 @@ test.describe('language', () => {
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'lt')
     await expect(page).toHaveURL(/lang=lt/)
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Almantas Karpavičius')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(
+      'Programavimo Komandos Vadovas',
+    )
     await expect(page.getByRole('navigation', { name: 'Skyriai' })).toBeVisible()
 
     await page.reload()

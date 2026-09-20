@@ -35,6 +35,56 @@
     <meta property="og:image:alt" content="Almantas Karpavičius speaking on stage" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- React writes these from the content bundle, but only once it has hydrated, so a
+         Lithuanian reader would watch the English title for a beat first. This applies the
+         same strings before first paint, by the same precedence as resolveLanguage:
+         ?lang= beats a stored choice beats the browser's own preference.
+         src/__tests__/head.test.ts fails the build if they drift from src/content. -->
+    <script>
+      ;(function () {
+        var M = {
+          en: {
+            t: 'Almantas Karpavičius — Engineering Manager, author, mentor',
+            d: 'Engineering Manager at Nord Security. 3× Microsoft MVP, author of two books, conference speaker, and mentor at Idealogue, KTU and Nord Security.',
+            o: 'I like coding. I like growing people a lot more. Engineering Manager at Nord Security, 3× Microsoft MVP, author of two books.',
+          },
+          lt: {
+            t: 'Almantas Karpavičius — Programavimo Komandos Vadovas, autorius, mentorius',
+            d: 'Programavimo Komandos Vadovas Nord Security. 3× Microsoft MVP, dviejų knygų autorius, konferencijų pranešėjas ir mentorius Idealogue, KTU bei Nord Security.',
+            o: 'Man patinka programuoti. Ugdyti žmones patinka dar labiau. Programavimo Komandos Vadovas Nord Security, 3× Microsoft MVP, dviejų knygų autorius.',
+          },
+        }
+        function pick() {
+          var p = null
+          try {
+            p = new URLSearchParams(location.search).get('lang')
+          } catch (e) {}
+          if (p && M[p]) return p
+          try {
+            var stored = localStorage.getItem('akarpavicius-language')
+            if (stored && M[stored]) return stored
+          } catch (e) {}
+          var tags = navigator.languages || [navigator.language || '']
+          for (var i = 0; i < tags.length; i++) {
+            var primary = String(tags[i]).toLowerCase().split('-')[0]
+            if (M[primary]) return primary
+          }
+          return 'en'
+        }
+        var lang = pick()
+        var meta = M[lang]
+        document.documentElement.lang = lang
+        document.title = meta.t
+        function set(attr, key, value) {
+          var el = document.querySelector('meta[' + attr + '="' + key + '"]')
+          if (el) el.setAttribute('content', value)
+        }
+        set('name', 'description', meta.d)
+        set('property', 'og:title', meta.t)
+        set('property', 'og:description', meta.o)
+      })()
+    </script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

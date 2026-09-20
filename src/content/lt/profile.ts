@@ -2,7 +2,7 @@ import type { Education, Link, Profile, Quote, Section } from '../types'
 
 export const profile: Profile = {
   name: 'Almantas Karpavičius',
-  role: 'Programų inžinerijos vadovas',
+  role: 'Programavimo Komandos Vadovas',
   org: 'Nord Security',
   tagline: 'Man patinka programuoti. Ugdyti žmones patinka dar labiau.',
   intro:

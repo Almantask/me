@@ -48,18 +48,26 @@ test.describe('accessibility', () => {
 
   /**
    * SplitText replaces the heading's text with per-character spans. Without the
-   * aria handling that would leave screen readers reading the name letter by letter
+   * aria handling that would leave screen readers reading the role letter by letter
    * — or not at all.
    */
-  test('exposes the whole name to assistive technology despite the split', async ({ page }) => {
+  test('exposes the whole heading to assistive technology despite the split', async ({ page }) => {
     await page.goto('./')
     await settle(page)
 
     const heading = page.getByRole('heading', { level: 1 })
     const accessibleName = await heading.evaluate((node) => node.getAttribute('aria-label') ?? node.textContent)
 
-    expect(accessibleName?.replace(/\s+/g, ' ').trim()).toBe('Almantas Karpavičius')
+    expect(accessibleName?.replace(/\s+/g, ' ').trim()).toBe('Engineering Manager')
     expect(await heading.locator('[aria-hidden="true"]').count()).toBeGreaterThan(0)
+  })
+
+  /** The name left the h1 for the eyebrow, so it still has to be on the page. */
+  test('still names him in the hero', async ({ page }) => {
+    await page.goto('./')
+    await settle(page)
+
+    await expect(page.locator('#top')).toContainText('Almantas Karpavičius')
   })
 
   test('offers a skip link as the first stop for the keyboard', async ({ page }) => {

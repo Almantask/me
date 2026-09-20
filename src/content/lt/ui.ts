@@ -75,7 +75,9 @@ export const ui: UiStrings = {
   mailSubject: (name) => `Sveiki, rašo ${name}`,
 
   footerNote: 'Sukurta su React, GSAP ir dideliu entuziazmu.',
-  metaTitle: 'Almantas Karpavičius — programų inžinerijos vadovas, autorius, mentorius',
+  metaTitle: 'Almantas Karpavičius — Programavimo Komandos Vadovas, autorius, mentorius',
   metaDescription:
-    'Programų inžinerijos vadovas Nord Security. 3× Microsoft MVP, dviejų knygų autorius, konferencijų pranešėjas ir mentorius Idealogue, KTU bei Nord Security.',
+    'Programavimo Komandos Vadovas Nord Security. 3× Microsoft MVP, dviejų knygų autorius, konferencijų pranešėjas ir mentorius Idealogue, KTU bei Nord Security.',
+  ogDescription:
+    'Man patinka programuoti. Ugdyti žmones patinka dar labiau. Programavimo Komandos Vadovas Nord Security, 3× Microsoft MVP, dviejų knygų autorius.',
 }

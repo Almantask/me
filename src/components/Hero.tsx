@@ -33,8 +33,8 @@ export function Hero() {
       // 'words,chars' rather than 'chars' alone: splitting to bare characters makes
       // every character an inline-block, so the browser will happily break a line
       // mid-word. Wrapping words keeps the break points where they belong.
-      // aria: 'auto' keeps the full name on the container and hides the split spans,
-      // so this does not shred the heading for screen readers.
+      // aria: 'auto' keeps the full heading on the container and hides the split spans,
+      // so this does not shred it for screen readers.
       const split = new SplitText(name, { type: 'words,chars', aria: 'auto' })
 
       // Per character is twenty-odd elements animating at the one moment the device
@@ -130,15 +130,15 @@ export function Hero() {
       <div className="shell grid content-center items-center gap-12 pt-28 pb-16 lg:min-h-[100svh] lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-32">
         <div ref={copyRef}>
           <p data-hero-stage className="eyebrow">
-            {profile.role} · {profile.org}
+            {profile.name} · {profile.org}
           </p>
 
           <h1
             ref={nameRef}
             id="hero-heading"
-            className="mt-4 text-[clamp(2.5rem,7vw,5rem)] leading-[0.98] font-semibold"
+            className="mt-4 text-[clamp(2.1rem,6vw,4.25rem)] leading-[1.02] font-semibold text-balance"
           >
-            {profile.name}
+            {profile.role}
           </h1>
 
           <p

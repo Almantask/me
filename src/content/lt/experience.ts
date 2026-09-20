@@ -4,7 +4,7 @@ import type { Role } from '../types'
 export const experience: readonly Role[] = [
   {
     id: 'nordsecurity-em',
-    role: 'Programų inžinerijos vadovas',
+    role: 'Programavimo Komandos Vadovas',
     org: 'Nord Security',
     start: '2026-01',
     end: null,

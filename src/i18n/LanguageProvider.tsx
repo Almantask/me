@@ -23,6 +23,10 @@ function readParam(): string | null {
   return new URLSearchParams(window.location.search).get(LANGUAGE_PARAM)
 }
 
+function setMeta(attribute: 'name' | 'property', key: string, value: string) {
+  document.querySelector(`meta[${attribute}="${key}"]`)?.setAttribute('content', value)
+}
+
 export function LanguageProvider({ children }: { readonly children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() =>
     resolveLanguage(readParam(), readStored(), navigator.languages ?? [navigator.language]),
@@ -35,9 +39,11 @@ export function LanguageProvider({ children }: { readonly children: ReactNode })
 
     document.documentElement.lang = language
     document.title = ui.metaTitle
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute('content', ui.metaDescription)
+    setMeta('name', 'description', ui.metaDescription)
+    // The og tags are what a shared link previews as, so they have to follow the
+    // switch too — otherwise a link copied from the Lithuanian page unfurls in English.
+    setMeta('property', 'og:title', ui.metaTitle)
+    setMeta('property', 'og:description', ui.ogDescription)
 
     try {
       localStorage.setItem(LANGUAGE_STORAGE_KEY, language)
