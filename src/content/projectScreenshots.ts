@@ -6,6 +6,12 @@ import type { ProjectScreenshot } from './types'
  * of the public app when the README has none. Keyed by project id.
  */
 export const projectScreenshots: Readonly<Record<string, readonly ProjectScreenshot[]>> = {
+  degalai: [
+    { file: 'map', alt: 'Map of Lithuanian fuel stations with a cheapest-first list' },
+    { file: 'route', alt: 'Route from Vilnius to Kaunas with on-the-way stations' },
+    { file: 'history', alt: 'Provider average prices by date and time' },
+    { file: 'mobile', alt: 'Mobile map with station list sheet' },
+  ],
   sunderplace: [
     { file: 'home', alt: 'Home' },
     { file: 'catalog', alt: 'Catalog' },
@@ -102,9 +108,9 @@ export const projectScreenshots: Readonly<Record<string, readonly ProjectScreens
     { file: 'settings', alt: 'Settings page with Cloud Run API URL and provider status' },
   ],
   geoclash: [
-    { file: 'title', alt: 'Title screen with Start Mission and high scores' },
-    { file: 'mission', alt: 'In-mission blind map with the thermal cursor' },
-    { file: 'scores', alt: 'High scores table' },
+    { file: 'start-menu', alt: 'Start menu' },
+    { file: 'gameplay-map', alt: 'Gameplay on the unlabeled map' },
+    { file: 'guess-result', alt: 'Guess result with thermal cursor' },
   ],
   'arcanum-audio': [
     { file: 'home', alt: 'Home dashboard with Demo Adventure, top soundscape, and top FX' },

@@ -1,7 +1,16 @@
 import type { Project } from '../types'
 
-/** Newest first — the 2026 AI/music work is where he is now. */
+/** Newest first. */
 export const projects: readonly Project[] = [
+  {
+    id: 'degalai',
+    name: 'Kur degalai',
+    years: '2026 — now',
+    blurb:
+      "Free, current fuel prices for every station in Lithuania. Pick diesel, petrol or LPG to see who's cheapest nearby — or set a route and get the five cheapest stops on the way.",
+    tech: ['TypeScript', 'MapLibre', 'PWA'],
+    href: 'https://almantask.github.io/Degalai-web/',
+  },
   {
     id: 'sunderplace',
     name: 'Sunderplace',

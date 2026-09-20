@@ -2,6 +2,15 @@ import type { Project } from '../types'
 
 export const projects: readonly Project[] = [
   {
+    id: 'degalai',
+    name: 'Kur degalai',
+    years: '2026 — dabar',
+    blurb:
+      'Nemokamos, nuolat atnaujinamos degalų kainos visose Lietuvos degalinėse. Pasirenki dyzeliną, benziną ar dujas ir matai, kur pigiausia netoliese — arba nurodai maršrutą ir gauni penkias pigiausias degalines pakeliui.',
+    tech: ['TypeScript', 'MapLibre', 'PWA'],
+    href: 'https://almantask.github.io/Degalai-web/',
+  },
+  {
     id: 'sunderplace',
     name: 'Sunderplace',
     years: '2026 — dabar',
