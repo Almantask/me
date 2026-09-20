@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { bundles } from '../src/content'
 import { settle } from './helpers'
 
 test.describe('language', () => {
@@ -16,7 +17,7 @@ test.describe('language', () => {
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'lt')
     await expect(page.getByRole('heading', { name: /pasirinkau vadovavimą/i })).toBeVisible()
-    await expect(page).toHaveTitle(/inžinerijos vadovas/i)
+    await expect(page).toHaveTitle(bundles.lt.ui.metaTitle)
   })
 
   test('lets the URL override a previously stored choice', async ({ page }) => {

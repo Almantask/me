@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test'
+import { bundles } from '../src/content'
 import { scrollToSection, settle } from './helpers'
+
+// Counted from the content rather than written down, so adding a project cannot
+// leave this passing against a stale number.
+const PROJECT_COUNT = bundles.en.projects.length
 
 test.describe('project screenshot carousels', () => {
   test('every project card has a screenshot carousel', async ({ page }) => {
@@ -9,8 +14,8 @@ test.describe('project screenshot carousels', () => {
 
     const cards = page.locator('#projects ul.grid > li')
     const carousels = page.locator('#projects [data-carousel]')
-    await expect(cards).toHaveCount(13)
-    await expect(carousels).toHaveCount(13)
+    await expect(cards).toHaveCount(PROJECT_COUNT)
+    await expect(carousels).toHaveCount(PROJECT_COUNT)
   })
 
   test('steps through README screenshots without wrapping the card in the control', async ({ page }) => {
