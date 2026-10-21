@@ -34,6 +34,7 @@ function pages(origin, shots) {
 }
 
 const PROJECTS = [
+  { id: 'zemaitijos-miestelis', repo: 'Almantask/dnd-zemaiciai-2', branch: 'main' },
   { id: 'degalai', repo: 'Almantask/Degalai-web', branch: 'main' },
   { id: 'thunder-play', repo: 'Almantask/thunder-play', branch: 'main', sheet: 3 },
   { id: 'sunderplace', repo: 'Almantask/sounderplace', branch: 'main' },

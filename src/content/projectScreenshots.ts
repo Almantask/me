@@ -6,6 +6,13 @@ import type { ProjectScreenshot } from './types'
  * of the public app when the README has none. Keyed by project id.
  */
 export const projectScreenshots: Readonly<Record<string, readonly ProjectScreenshot[]>> = {
+  'zemaitijos-miestelis': [
+    { file: 'town', alt: 'The border town, with labeled buildings' },
+    { file: 'archive', alt: 'The archive, with the chronicle, wall map, and trophy room' },
+    { file: 'book', alt: 'The chronicle open on the bookmarked session' },
+    { file: 'tavern', alt: 'The Black Bear inn, with the keeper, counter, and heroes' },
+    { file: 'innkeeper', alt: 'Butigeidis greeting the party from behind the bar' },
+  ],
   degalai: [
     { file: 'map', alt: 'Map of Lithuanian fuel stations with a cheapest-first list' },
     { file: 'route', alt: 'Route from Vilnius to Kaunas with on-the-way stations' },
