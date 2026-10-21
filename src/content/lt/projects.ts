@@ -2,6 +2,15 @@ import type { Project } from '../types'
 
 export const projects: readonly Project[] = [
   {
+    id: 'zemaitijos-miestelis',
+    name: 'Žemaitijos Miestelis',
+    years: '2026 — dabar',
+    blurb:
+      'Interaktyvus palydovas namudiniam D&D žaidimui, vykstančiam XV a. Žemaitijos pasienio miestelyje. Vaikštai po nutapytą aikštę, užsuki į smuklę bei archyvą ir skaitai kampanijos kroniką. Lietuviškai, savo stalui.',
+    tech: ['React', 'TypeScript', 'Tailwind'],
+    href: 'https://almantask.github.io/dnd-zemaiciai-2/',
+  },
+  {
     id: 'degalai',
     name: 'Kur degalai',
     years: '2026 — dabar',

@@ -3,6 +3,15 @@ import type { Project } from '../types'
 /** Newest first. */
 export const projects: readonly Project[] = [
   {
+    id: 'zemaitijos-miestelis',
+    name: 'Žemaitijos Miestelis',
+    years: '2026 — now',
+    blurb:
+      'An interactive companion for a homebrew D&D game set in a 15th-century Samogitian border town. Walk the painted square, step into the tavern and the archive, and read the campaign chronicle. In Lithuanian, for the table that plays it.',
+    tech: ['React', 'TypeScript', 'Tailwind'],
+    href: 'https://almantask.github.io/dnd-zemaiciai-2/',
+  },
+  {
     id: 'degalai',
     name: 'Kur degalai',
     years: '2026 — now',
